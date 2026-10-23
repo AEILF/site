@@ -164,7 +164,7 @@ a { color: inherit; }
 .brand__seal { position: relative; width: 64px; height: 64px; flex: none; }
 .brand__logo { position: absolute; inset: 0; width: 64px; height: 64px; transition: opacity .4s; }
 .brand__logo--blanc { opacity: 0; }
-.brand__name { transition: color .4s; }
+.brand__name { transition: color .4s, opacity .5s var(--ease), transform .6s var(--ease), clip-path .6s var(--ease); clip-path: inset(0 0 0 0); }
 .brand__name { display: grid; font: 800 15px/1.15 var(--ilf-font); }
 .nav { display: flex; gap: 28px; font: 800 14px/1 var(--ilf-font); }
 .nav a { text-decoration: none; color: var(--ilf-encre); padding-block: 6px; border-bottom: 2px solid transparent; transition: color .25s, border-color .25s; }
@@ -206,7 +206,7 @@ a { color: inherit; }
 /* Ouverture : trois couches calées sur l'illustration (2000 × 1058).
    Fond (ciel + bâtiment) → sigle → premier plan détouré (bâtiment, arbres) : le sigle passe derrière la faculté. */
 .hero {
-  --stage-w: clamp(100vw, calc((100svh - 140px) * 1.8904), 140vw);
+  --stage-w: clamp(100vw, calc((100svh - 140px) * 1.8904), 132vw);
   --stage-h: calc(var(--stage-w) * .529);
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; flex-direction: column;
@@ -276,10 +276,10 @@ a { color: inherit; }
 
 /* En-tête transparent au-dessus de l'ouverture */
 .top.is-over { background: transparent; border-bottom-color: transparent; }
-.top.is-over .brand__name { color: var(--ilf-blanc); }
+.top.is-over .brand__name { color: var(--ilf-blanc); opacity: 0; transform: translateX(-12px); clip-path: inset(0 100% 0 0); }
 .top.is-over .brand__logo--bleu { opacity: 0; }
 .top.is-over .brand__logo--blanc { opacity: 1; }
-.nav-open .top.is-over .brand__name { color: var(--ilf-encre); }
+.nav-open .top.is-over .brand__name { color: var(--ilf-encre); opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
 .nav-open .top.is-over .brand__logo--bleu { opacity: 1; }
 .nav-open .top.is-over .brand__logo--blanc { opacity: 0; }
 .top.is-over .nav a { color: var(--ilf-blanc); }
