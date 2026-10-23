@@ -60,6 +60,18 @@
       .map(function (w) { return w.charAt(0).toUpperCase(); }).join("");
   }
 
+  // Sigle de l'ouverture : une lettre par élément, pour animer chacune séparément
+  function setSigle(text) {
+    var box = $("#hero-sigle");
+    if (!box) return [];
+    box.textContent = "";
+    return Array.from(String(text).trim()).map(function (c) {
+      var ch = el("span", "ch"), inner = el("span", "ch__in", c);
+      ch.appendChild(inner); box.appendChild(ch);
+      return ch;
+    });
+  }
+
   function storage(fn) { try { return fn(window.sessionStorage); } catch (e) { return null; } }
 
   // Icônes Lucide (trait 2 px, extrémités carrées), tracés repris de la charte
@@ -87,6 +99,9 @@
       if (typeof v !== "string" || v.trim() === "") return;
       if (node.hasAttribute("data-rich")) setRich(node, v); else node.textContent = v.replace(/\*/g, "");
     });
+
+    var sig = $("#hero-sigle");
+    if (sig && site.sigle && site.sigle.trim() !== sig.textContent.trim()) setSigle(site.sigle);
 
     if (site.motsAccent && site.motsAccent.length) accentWords = site.motsAccent.filter(Boolean);
     var first = accentWords[0] || "ensemble";
@@ -405,11 +420,10 @@
     // Le fond et le premier plan bougent ensemble (mêmes valeurs) pour rester parfaitement superposés
     tl.from("#hero-bg, #hero-fg", { scale: 1.18, duration: 2.6, ease: "expo.out" }, t0)
       .from(".hero__veil", { opacity: 0, duration: 1.6, ease: "power2.out" }, t0)
-      .from("#hero-sigle > span", { yPercent: 100, duration: 2, ease: "expo.out" }, t0 + 0.35)
-      .from("#hero-seal", { y: -30, opacity: 0, duration: 1.4, ease: "expo.out" }, t0 + 0.5)
+      .from("#hero-sigle .ch__in", { yPercent: 110, duration: 1.9, ease: "expo.out", stagger: 0.09 }, t0 + 0.35)
       .from("#hero-name", { opacity: 0, letterSpacing: "0.6em", duration: 1.8, ease: "expo.out" }, t0 + 0.6)
       .from(".hero__down", { opacity: 0, y: 20, duration: 1, ease: "expo.out" }, t0 + 1.6)
-      .from(".top__in > :not(.brand)", { y: -20, opacity: 0, stagger: 0.07, duration: 1, ease: "expo.out" }, t0 + 0.8);
+      .from(".top__in > *", { y: -20, opacity: 0, stagger: 0.07, duration: 1, ease: "expo.out" }, t0 + 0.8);
     return t0 + 0.7;
   }
 
@@ -460,27 +474,34 @@
     gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
   }
 
-  // Le sigle monte de derrière la faculté, puis s'y enfonce au défilement ; léger relief à la souris
+  // Les lettres montent de derrière la faculté une à une, s'y enfoncent au défilement à des vitesses différentes,
+  // et se soulèvent au survol ; léger relief à la souris
   function heroScene() {
     var sigle = $("#hero-sigle");
     if (!sigle) return;
-    gsap.to(sigle, { yPercent: 55, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
-    gsap.to(".hero__brand", { yPercent: -40, opacity: 0, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "60% top", scrub: true } });
+    var chars = $all(".ch", sigle);
+    chars.forEach(function (c, i) {
+      gsap.to(c, { yPercent: 45 + i * 14, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
+    });
+    gsap.to(".hero__brand", { yPercent: -60, opacity: 0, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "40% top", scrub: true } });
     gsap.to(".hero__down", { opacity: 0, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "15% top", scrub: true } });
 
     if (!finePointer) return;
+    chars.forEach(function (c) {
+      var inner = c.querySelector(".ch__in");
+      var lift = gsap.quickTo(inner, "y", { duration: 0.9, ease: "elastic.out(1, 0.45)" });
+      c.addEventListener("pointerenter", function () { lift(-inner.offsetHeight * 0.07); });
+      c.addEventListener("pointerleave", function () { lift(0); });
+    });
     var hero = $("#hero");
     var sx = gsap.quickTo(sigle, "x", { duration: 1.2, ease: "power3.out" });
-    var seal = $("#hero-seal");
-    var lx = gsap.quickTo(seal, "x", { duration: 1.2, ease: "power3.out" });
-    var ly = gsap.quickTo(seal, "y", { duration: 1.2, ease: "power3.out" });
+    var nx = gsap.quickTo("#hero-name", "x", { duration: 1.2, ease: "power3.out" });
     hero.addEventListener("pointermove", function (e) {
       var r = hero.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-      sx(px * -24);
-      lx(px * 10); ly(py * 8);
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      sx(px * -24); nx(px * 10);
     });
-    hero.addEventListener("pointerleave", function () { sx(0); lx(0); ly(0); });
+    hero.addEventListener("pointerleave", function () { sx(0); nx(0); });
   }
 
   function introBlock() {
@@ -652,6 +673,7 @@
 
   /* ---------- Démarrage ---------- */
 
+  setSigle(($("#hero-sigle") || {}).textContent || "");
   if (!animate) root.classList.remove("is-loading");
   if (animate) smoothScroll();
   if (animate) loaderThenIntro();
