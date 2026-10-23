@@ -13,6 +13,7 @@ content:
     format: json
     fields:
       - { name: nom, label: Nom complet de l'association, type: string }
+      - { name: sigle, label: Sigle géant de la page d'accueil (ex. AEILF), type: string }
       - { name: nomLigne1, label: Nom dans l'en-tête - ligne 1, type: string }
       - { name: nomLigne2, label: Nom dans l'en-tête - ligne 2, type: string }
       - { name: lieu, label: Petite ligne au-dessus du titre, type: string }
@@ -20,9 +21,7 @@ content:
       - { name: titreLigne2, label: Grand titre - ligne 2, type: string }
       - { name: motsAccent, label: "Grand titre - mot en Times (un seul mot ; s'il y en a plusieurs, ils défilent)", type: string, list: true }
       - { name: accroche, label: Phrase d'accroche, type: text }
-      - { name: illustration, label: Illustration de la page d'accueil (affichée en noir et blanc), type: image }
       - { name: illustrationAlt, label: Description de l'illustration (pour les malvoyants), type: string }
-      - { name: illustrationLegende, label: Légende de l'illustration, type: string }
       - { name: illustrationCredit, label: Crédit de l'illustration, type: string }
       - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
       - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }

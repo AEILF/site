@@ -99,11 +99,7 @@
     if (title) title.setAttribute("aria-label", [site.titreLigne1, site.titreLigne2, first].filter(Boolean).join(" ") + ".");
     if (site.nomLigne1 && site.nomLigne2) document.title = site.nomLigne1 + " " + site.nomLigne2;
 
-    var img = $("#hero-img");
-    if (img && site.illustration) {
-      img.removeAttribute("srcset");
-      img.src = site.illustration;
-    }
+    var img = $("#hero-bg");
     if (img && site.illustrationAlt) img.alt = site.illustrationAlt;
     if (site.adhesionLien) { var join = $("#join-link"); if (join) join.href = site.adhesionLien; }
 
@@ -248,8 +244,12 @@
   function setupHeader() {
     var top = $("#top"), nav = $("#nav"), btn = $("#menu-btn");
     var lastY = window.scrollY;
+    var hero = $("#hero");
+    function over() { return hero && window.scrollY < 40; }
+    top.classList.toggle("is-over", !!over());
     window.addEventListener("scroll", function () {
       var y = window.scrollY;
+      top.classList.toggle("is-over", !!over());
       if (!nav.classList.contains("is-open")) {
         if (y > 600 && y > lastY + 4) top.classList.add("is-hidden");
         if (y < lastY - 4 || y < 600) top.classList.remove("is-hidden");
@@ -259,6 +259,7 @@
 
     function setMenu(open) {
       nav.classList.toggle("is-open", open);
+      root.classList.toggle("nav-open", open);
       btn.setAttribute("aria-expanded", String(open));
       btn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
       if (lenis) { if (open) lenis.stop(); else lenis.start(); }
@@ -400,15 +401,16 @@
           if (lenis) lenis.start();
         });
     }
-    var t0 = showLoader ? 1.85 : 0.1;
-    tl.from(".hero__title .line__in", { yPercent: 115, duration: 1.4, ease: "expo.out", stagger: 0.12 }, t0)
-      .from(".hero__kicker", { y: 16, opacity: 0, duration: 1, ease: "expo.out" }, t0 + 0.1)
-      .from(".hero__side > *", { y: 30, opacity: 0, stagger: 0.12, duration: 1.2, ease: "expo.out" }, t0 + 0.4)
-      .from("#hero-frame", { clipPath: "inset(100% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut" }, t0 + 0.2)
-      .from("#hero-img", { scale: 1.35, duration: 2.4, ease: "expo.out" }, t0 + 0.4)
-      .from(".hero__caption > *", { y: 12, opacity: 0, stagger: 0.1, duration: 1, ease: "expo.out" }, t0 + 1.2)
-      .from(".top__in > *", { y: -20, opacity: 0, stagger: 0.07, duration: 1, ease: "expo.out" }, t0 + 0.3);
-    return t0 + 2.2;
+    var t0 = showLoader ? 1.7 : 0.1;
+    // Le fond et le premier plan bougent ensemble (mêmes valeurs) pour rester parfaitement superposés
+    tl.from("#hero-bg, #hero-fg", { scale: 1.18, duration: 2.6, ease: "expo.out" }, t0)
+      .from(".hero__veil", { opacity: 0, duration: 1.6, ease: "power2.out" }, t0)
+      .from("#hero-sigle > span", { yPercent: 100, duration: 2, ease: "expo.out" }, t0 + 0.35)
+      .from("#hero-seal", { y: -30, opacity: 0, duration: 1.4, ease: "expo.out" }, t0 + 0.5)
+      .from("#hero-name", { opacity: 0, letterSpacing: "0.6em", duration: 1.8, ease: "expo.out" }, t0 + 0.6)
+      .from(".hero__down", { opacity: 0, y: 20, duration: 1, ease: "expo.out" }, t0 + 1.6)
+      .from(".top__in > :not(.brand)", { y: -20, opacity: 0, stagger: 0.07, duration: 1, ease: "expo.out" }, t0 + 0.8);
+    return t0 + 0.7;
   }
 
   // Le mot en Times du titre change régulièrement : un seul mot accentué à la fois, comme le veut la charte
@@ -449,7 +451,7 @@
       var text = t && t.getAttribute("data-cursor");
       c.classList.toggle("is-hover", !!t && !text);
       c.classList.toggle("is-label", !!text);
-      c.classList.toggle("is-invert", !!e.target.closest(".join, .marquee, .act:hover"));
+      c.classList.toggle("is-invert", !!e.target.closest(".join, .marquee, .act:hover, .hero"));
       if (text) label.textContent = text;
     });
   }
@@ -458,14 +460,34 @@
     gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
   }
 
-  // L'illustration se dégage du cadre et glisse lentement au défilement
-  function heroMedia() {
-    gsap.to("#hero-img", { yPercent: 12, ease: "none", scrollTrigger: { trigger: "#hero-media", start: "top bottom", end: "bottom top", scrub: true } });
-    gsap.fromTo("#hero-frame", { clipPath: "inset(0% 6% 0% 6%)" }, {
-      clipPath: "inset(0% 0% 0% 0%)", ease: "none", immediateRender: false,
-      scrollTrigger: { trigger: "#hero-media", start: "top 85%", end: "top 15%", scrub: 0.6 }
+  // Le sigle monte de derrière la faculté, puis s'y enfonce au défilement ; léger relief à la souris
+  function heroScene() {
+    var sigle = $("#hero-sigle");
+    if (!sigle) return;
+    gsap.to(sigle, { yPercent: 55, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".hero__brand", { yPercent: -40, opacity: 0, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "60% top", scrub: true } });
+    gsap.to(".hero__down", { opacity: 0, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "15% top", scrub: true } });
+
+    if (!finePointer) return;
+    var hero = $("#hero");
+    var sx = gsap.quickTo(sigle, "x", { duration: 1.2, ease: "power3.out" });
+    var seal = $("#hero-seal");
+    var lx = gsap.quickTo(seal, "x", { duration: 1.2, ease: "power3.out" });
+    var ly = gsap.quickTo(seal, "y", { duration: 1.2, ease: "power3.out" });
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+      sx(px * -24);
+      lx(px * 10); ly(py * 8);
     });
-    gsap.to(".hero__title", { yPercent: -18, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    hero.addEventListener("pointerleave", function () { sx(0); lx(0); ly(0); });
+  }
+
+  function introBlock() {
+    var tl = gsap.timeline({ scrollTrigger: { trigger: "#intro", start: "top 80%", once: true } });
+    tl.from(".intro__title .line__in", { yPercent: 115, duration: 1.4, ease: "expo.out", stagger: 0.12 }, 0)
+      .from(".intro__kicker", { y: 16, opacity: 0, duration: 1, ease: "expo.out" }, 0.1)
+      .from(".intro__side > *", { y: 30, opacity: 0, stagger: 0.12, duration: 1.2, ease: "expo.out" }, 0.3);
   }
 
   function manifesto() {
@@ -632,7 +654,7 @@
 
   if (!animate) root.classList.remove("is-loading");
   if (animate) smoothScroll();
-  var introEnd = animate ? loaderThenIntro() : 0;
+  if (animate) loaderThenIntro();
   setupHeader();
   setupCopy();
 
@@ -644,10 +666,11 @@
 
     if (!animate) return;
     var start = function () {
-      rotator(introEnd);
+      heroScene();
+      introBlock();
+      rotator(1.2);
       cursor();
       progressBar();
-      heroMedia();
       manifesto();
       marquee();
       headings();

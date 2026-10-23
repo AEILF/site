@@ -70,6 +70,6 @@ Transmettez au nouveau bureau l'identifiant et le mot de passe du compte GitHub,
 ## Respecter la charte graphique dans l'admin
 
 - **Times New Roman** : un seul mot par phrase, et seulement dans les titres. Dans l'admin, mettez ce mot *entre astérisques* (champ « Art. 5 - Titre »). Pour le grand titre, inscrivez un ou plusieurs mots dans « mot en Times » : s'il y en a plusieurs, ils défilent l'un après l'autre.
-- **Photos** : elles s'affichent automatiquement en noir et blanc. Envoyez-les en couleur, le site s'en charge.
+- **Photos du bureau** : elles s'affichent automatiquement en noir et blanc, comme le veut la charte. Envoyez-les en couleur, le site s'en charge. L'illustration de la page d'accueil, elle, reste en couleur.
 - **Logo** : n'utilisez que le sceau officiel (dossier `assets/brand`). Ne le recadrez pas et ne le modifiez pas.
-- **Illustration de la page d'accueil** : indiquez son crédit (auteur ou agence) dans le champ « Crédit de l'illustration ».
+- **Illustration de la page d'accueil** : indiquez son crédit (auteur ou agence) dans le champ « Crédit de l'illustration ». L'image elle-même ne se change pas depuis l'admin : le bâtiment et les arbres ont été détourés à la main pour que le sigle passe derrière. Une nouvelle image demandera un nouveau détourage.
