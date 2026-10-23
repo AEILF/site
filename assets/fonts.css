@@ -1,5 +1,5 @@
 /* Nexa (Fontfabric) : vérifier que la licence couvre l'usage web avant la mise en ligne publique */
-@font-face{font-family:'Nexa';font-style:normal;font-weight:900;font-display:swap;src:url('fonts/Nexa-Heavy.woff2') format('woff2')}
+@font-face{font-family:'Nexa';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/Nexa-Heavy.woff2') format('woff2')}
 @font-face{font-family:'Nexa';font-style:normal;font-weight:200;font-display:swap;src:url('fonts/Nexa-ExtraLight.woff2') format('woff2')}
 /* Tinos (Apache 2.0) : mêmes dimensions que Times New Roman, utilisée seulement quand l'appareil n'a pas Times New Roman */
 @font-face{font-family:'Tinos';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/Tinos-normal.woff2') format('woff2')}

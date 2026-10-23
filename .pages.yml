@@ -13,16 +13,21 @@ content:
     format: json
     fields:
       - { name: nom, label: Nom complet de l'association, type: string }
-      - { name: sigle, label: Sigle (affiché en haut à gauche), type: string }
+      - { name: nomLigne1, label: Nom dans l'en-tête - ligne 1, type: string }
+      - { name: nomLigne2, label: Nom dans l'en-tête - ligne 2, type: string }
       - { name: lieu, label: Petite ligne au-dessus du titre, type: string }
       - { name: titreLigne1, label: Grand titre - ligne 1, type: string }
       - { name: titreLigne2, label: Grand titre - ligne 2, type: string }
-      - { name: titreLigne3, label: Grand titre - ligne 3 (en Times italique bleu), type: string }
+      - { name: motsAccent, label: "Grand titre - mot en Times (un seul mot ; s'il y en a plusieurs, ils défilent)", type: string, list: true }
       - { name: accroche, label: Phrase d'accroche, type: text }
-      - { name: manifeste, label: "Art. 1 - Texte de présentation (mettez un mot *entre astérisques* pour l'afficher en Times italique)", type: text }
+      - { name: illustration, label: Illustration de la page d'accueil (affichée en noir et blanc), type: image }
+      - { name: illustrationAlt, label: Description de l'illustration (pour les malvoyants), type: string }
+      - { name: illustrationLegende, label: Légende de l'illustration, type: string }
+      - { name: illustrationCredit, label: Crédit de l'illustration, type: string }
+      - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
       - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }
       - { name: motsCles, label: Mots du bandeau défilant, type: string, list: true }
-      - { name: adhesionTitre, label: "Art. 5 - Titre (*astérisques* = Times italique)", type: string }
+      - { name: adhesionTitre, label: "Art. 5 - Titre (un seul mot *entre astérisques* = Times italique)", type: string }
       - { name: adhesionTexte, label: Art. 5 - Texte, type: text }
       - { name: adhesionPrix, label: Art. 5 - Montant de la cotisation, type: string }
       - { name: adhesionLien, label: Lien vers la page d'adhésion HelloAsso, type: string }
@@ -39,7 +44,7 @@ content:
           - { name: hebergeur, label: Hébergeur, type: string }
 
   - name: evenements
-    label: Agenda
+    label: Événements
     type: file
     path: content/evenements.json
     format: json
@@ -57,10 +62,10 @@ content:
             label: Catégorie
             type: select
             options:
-              values: [Conférence, Concours, Rencontre professionnelle, Vie associative, Autre]
+              values: [Conférence, Concours, Atelier, Soirée, Rencontre professionnelle, Vie associative, Autre]
           - { name: description, label: Description courte, type: text }
           - { name: lien, label: Lien d'inscription ou billetterie (facultatif), type: string }
-          - { name: exemple, label: Afficher le badge « Exemple », type: boolean }
+          - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }
 
   - name: activites
     label: Activités
@@ -90,4 +95,4 @@ content:
           - { name: nom, label: Prénom et nom, type: string }
           - { name: role, label: Fonction, type: string }
           - { name: promo, label: Promotion, type: string }
-          - { name: photo, label: Photo (facultative), type: image }
+          - { name: photo, label: "Photo (facultative, affichée en noir et blanc)", type: image }

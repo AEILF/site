@@ -66,3 +66,10 @@ Les événements passés basculent **automatiquement** dans « Événements pass
 ## Passation d'une année sur l'autre
 
 Transmettez au nouveau bureau l'identifiant et le mot de passe du compte GitHub, ainsi que l'accès à la double authentification. C'est la seule chose à transmettre.
+
+## Respecter la charte graphique dans l'admin
+
+- **Times New Roman** : un seul mot par phrase, et seulement dans les titres. Dans l'admin, mettez ce mot *entre astérisques* (champ « Art. 5 - Titre »). Pour le grand titre, inscrivez un ou plusieurs mots dans « mot en Times » : s'il y en a plusieurs, ils défilent l'un après l'autre.
+- **Photos** : elles s'affichent automatiquement en noir et blanc. Envoyez-les en couleur, le site s'en charge.
+- **Logo** : n'utilisez que le sceau officiel (dossier `assets/brand`). Ne le recadrez pas et ne le modifiez pas.
+- **Illustration de la page d'accueil** : indiquez son crédit (auteur ou agence) dans le champ « Crédit de l'illustration ».
