@@ -6,23 +6,37 @@
 <title>AE·ILF Aix-en-Provence</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Association des étudiants de l'Institut Louis Favoreu, Aix-Marseille Université : conférences, concours de plaidoirie, vie associative.">
+<link rel="preload" href="assets/fonts/Nexa-Heavy.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Nexa-ExtraLight.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("ilf-intro"))document.documentElement.classList.add("is-loading")}catch(e){}</script>
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
+<!-- Rideau d'ouverture (masqué si JavaScript ou les animations sont désactivés) -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__in">
+    <p class="loader__brand"><span class="loader__mask"><span class="loader__word" data-bind="sigle">AE·ILF</span></span></p>
+    <p class="loader__count"><span id="loader-n">00</span><em>%</em></p>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursor-label"></span></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="top" id="top">
   <div class="top__in">
     <a class="brand" href="#accueil" data-bind="sigle">AE·ILF</a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
-      <a href="#objet">Objet</a>
-      <a href="#activites">Activités</a>
-      <a href="#agenda">Agenda</a>
-      <a href="#bureau">Bureau</a>
+      <a href="#objet"><span class="nav__n">01</span>Objet</a>
+      <a href="#activites"><span class="nav__n">02</span>Activités</a>
+      <a href="#agenda"><span class="nav__n">03</span>Agenda</a>
+      <a href="#bureau"><span class="nav__n">04</span>Bureau</a>
+      <a href="#adherer" class="nav__join"><span class="nav__n">05</span>Adhérer</a>
     </nav>
-    <a class="btn btn--small js-adhesion" href="#adherer">Adhérer</a>
+    <a class="btn btn--small magnetic" href="#adherer" data-cursor="Adhérer"><span>Adhérer</span></a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
   </div>
 </header>
@@ -30,30 +44,30 @@
 <main id="accueil">
 
   <!-- Préambule -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="wrap hero__grid">
-      <p class="eyebrow hero__eyebrow"><span class="dot"></span><span data-bind="lieu">Aix-en-Provence · Faculté de droit et de science politique</span></p>
+      <p class="label hero__eyebrow"><span class="dot"></span><span data-bind="lieu">Aix-en-Provence · Faculté de droit et de science politique</span></p>
 
-      <h1 class="hero__title" aria-label="Le droit public se pratique ensemble.">
-        <span class="line"><span class="line__in" data-bind="titreLigne1">Le droit public</span></span>
-        <span class="line line--indent"><span class="line__in" data-bind="titreLigne2">se pratique</span></span>
-        <span class="line"><em class="line__in" data-bind="titreLigne3">ensemble.</em></span>
+      <h1 class="hero__title" id="hero-title" aria-label="Le droit public se pratique ensemble.">
+        <span class="line line--heavy"><span class="line__in" data-bind="titreLigne1" data-play>Le droit public</span></span>
+        <span class="line line--light"><span class="line__in" data-bind="titreLigne2" data-play>se pratique</span></span>
+        <span class="line line--serif"><span class="line__in" data-bind="titreLigne3">ensemble.</span></span>
       </h1>
 
       <div class="hero__aside">
         <p class="hero__lede" data-bind="accroche">Conférences, concours, rencontres avec les praticiens : l'association fait vivre au quotidien la communauté des étudiants en droit public d'Aix-en-Provence.</p>
         <div class="hero__ctas">
-          <a class="btn btn--accent magnetic js-adhesion" href="#adherer"><span>Rejoindre l'association</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--accent magnetic" href="#adherer" data-cursor="Go"><span>Rejoindre l'association</span><span class="btn__arrow" aria-hidden="true">→</span></a>
           <a class="link-u" href="#agenda">Voir l'agenda</a>
         </div>
       </div>
 
       <ol class="toc" aria-label="Sommaire">
-        <li><a href="#objet"><span class="toc__n">Art. 1</span><span>Objet</span></a></li>
-        <li><a href="#activites"><span class="toc__n">Art. 2</span><span>Activités</span></a></li>
-        <li><a href="#agenda"><span class="toc__n">Art. 3</span><span>Agenda</span></a></li>
-        <li><a href="#bureau"><span class="toc__n">Art. 4</span><span>Bureau</span></a></li>
-        <li><a href="#adherer"><span class="toc__n">Art. 5</span><span>Adhésion</span></a></li>
+        <li><a href="#objet"><span class="toc__n">Art. 1</span><span>Objet</span><span class="toc__arrow" aria-hidden="true">↘</span></a></li>
+        <li><a href="#activites"><span class="toc__n">Art. 2</span><span>Activités</span><span class="toc__arrow" aria-hidden="true">↘</span></a></li>
+        <li><a href="#agenda"><span class="toc__n">Art. 3</span><span>Agenda</span><span class="toc__arrow" aria-hidden="true">↘</span></a></li>
+        <li><a href="#bureau"><span class="toc__n">Art. 4</span><span>Bureau</span><span class="toc__arrow" aria-hidden="true">↘</span></a></li>
+        <li><a href="#adherer"><span class="toc__n">Art. 5</span><span>Adhésion</span><span class="toc__arrow" aria-hidden="true">↘</span></a></li>
       </ol>
 
       <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
@@ -61,7 +75,7 @@
         <g class="seal__ring">
           <text><textPath href="#seal-path" textLength="488">ASSOCIATION ÉTUDIANTE · INSTITUT LOUIS FAVOREU · AIX ·</textPath></text>
         </g>
-        <text class="seal__mark" x="100" y="114" text-anchor="middle">§</text>
+        <text class="seal__mark" x="100" y="120" text-anchor="middle">§</text>
       </svg>
     </div>
     <div class="wrap"><div class="rule hero__rule"></div></div>
@@ -72,9 +86,9 @@
     <div class="wrap article__grid">
       <p class="art-label"><span>Art. 1</span>Objet</p>
       <div class="article__body">
-        <p class="manifesto" data-bind="manifeste" data-split>Nous croyons que le droit constitutionnel ne s'apprend pas seulement dans les amphithéâtres. Il se discute, se plaide, se confronte aux juges et aux praticiens. Notre association réunit celles et ceux qui veulent en faire l'expérience, de la licence au doctorat.</p>
+        <p class="manifesto" data-bind="manifeste" data-rich data-split>Nous croyons que le droit constitutionnel ne s'apprend pas seulement dans les amphithéâtres. Il se discute, se plaide, se confronte aux juges et aux praticiens.</p>
         <div class="institut reveal">
-          <p class="eyebrow">L'institut</p>
+          <p class="label">L'institut</p>
           <p data-bind="institut">Fondé à Aix-en-Provence par le professeur Louis Favoreu (1936-2004), l'Institut Louis Favoreu – GERJC est un centre de recherche de la Faculté de droit et de science politique d'Aix-Marseille Université, associé au CNRS au sein de l'UMR 7318 DICE. Ses travaux portent notamment sur la justice constitutionnelle, les droits fondamentaux et le droit électoral.</p>
         </div>
       </div>
@@ -86,14 +100,15 @@
     <div class="marquee__track" id="marquee"></div>
   </div>
 
-  <!-- Art. 2 -->
-  <section class="article" id="activites">
-    <div class="wrap article__grid">
-      <p class="art-label"><span>Art. 2</span>Activités</p>
-      <div class="article__body">
-        <h2 class="h2 reveal">Ce que nous faisons <em>toute l'année</em>.</h2>
-        <ol class="acts" id="acts"></ol>
+  <!-- Art. 2 : défilement horizontal sur grand écran -->
+  <section class="acts-section" id="activites">
+    <div class="acts-pin" id="acts-pin">
+      <div class="wrap acts-head">
+        <p class="art-label"><span>Art. 2</span>Activités</p>
+        <h2 class="h2 split-lines">Ce que nous faisons <em>toute l'année.</em></h2>
+        <div class="acts-progress" aria-hidden="true"><span id="acts-bar"></span></div>
       </div>
+      <ol class="acts" id="acts"></ol>
     </div>
   </section>
 
@@ -102,7 +117,7 @@
     <div class="wrap article__grid">
       <p class="art-label"><span>Art. 3</span>Agenda</p>
       <div class="article__body">
-        <h2 class="h2 reveal">Prochains <em>rendez-vous</em>.</h2>
+        <h2 class="h2 split-lines">Prochains <em>rendez-vous.</em></h2>
         <ul class="events" id="events"><li class="events__empty">Chargement de l'agenda…</li></ul>
         <details class="past" id="past" hidden>
           <summary><span>Événements passés</span><span class="past__count" id="past-count"></span></summary>
@@ -117,7 +132,7 @@
     <div class="wrap article__grid">
       <p class="art-label"><span>Art. 4</span>Bureau</p>
       <div class="article__body">
-        <h2 class="h2 reveal">Le bureau <em>de l'année</em>.</h2>
+        <h2 class="h2 split-lines">Le bureau <em>de l'année.</em></h2>
         <ul class="team" id="team"></ul>
       </div>
     </div>
@@ -125,14 +140,15 @@
 
   <!-- Art. 5 -->
   <section class="join" id="adherer">
+    <div class="join__bg" id="join-bg" aria-hidden="true"></div>
     <div class="wrap join__grid">
       <p class="art-label art-label--on-accent"><span>Art. 5</span>Adhésion</p>
       <div class="join__body">
-        <h2 class="join__title" data-bind="adhesionTitre" data-split-chars>Rejoignez l'association.</h2>
+        <h2 class="join__title" data-bind="adhesionTitre" data-rich data-split-chars>Rejoignez l'association.</h2>
         <p class="join__text" data-bind="adhesionTexte">L'adhésion est ouverte à tous les étudiants.</p>
         <div class="join__row">
-          <a class="btn btn--paper magnetic" id="join-link" href="https://www.helloasso.com" target="_blank" rel="noopener"><span>Adhérer en ligne</span><span class="btn__arrow" aria-hidden="true">↗</span></a>
-          <p class="join__price"><span class="eyebrow">Cotisation</span><span data-bind="adhesionPrix">À compléter</span></p>
+          <a class="btn btn--paper magnetic" id="join-link" href="https://www.helloasso.com" target="_blank" rel="noopener" data-cursor="Adhérer"><span>Adhérer en ligne</span><span class="btn__arrow" aria-hidden="true">↗</span></a>
+          <p class="join__price"><span class="label">Cotisation</span><span data-bind="adhesionPrix">À compléter</span></p>
         </div>
       </div>
     </div>
@@ -140,14 +156,14 @@
 
 </main>
 
-<footer class="foot">
+<footer class="foot" id="foot">
   <div class="wrap foot__grid">
     <div>
       <p class="foot__name" data-bind="nom">Association des étudiants de l'Institut Louis Favoreu</p>
       <p class="foot__small">Association étudiante indépendante. Ce site n'est pas le site officiel d'Aix-Marseille Université.</p>
     </div>
     <div class="foot__contact">
-      <p class="eyebrow">Écrire au bureau</p>
+      <p class="label">Écrire au bureau</p>
       <div class="copy">
         <span class="copy__text" id="email" data-bind="email">contact@exemple.fr</span>
         <button class="copy__btn" id="copy-btn" type="button">Copier</button>
@@ -155,14 +171,18 @@
       <p class="foot__links" id="socials"></p>
     </div>
     <div class="foot__legal">
-      <a class="link-u" href="mentions-legales.html">Mentions légales et confidentialité</a>
+      <a class="link-u js-transition" href="mentions-legales.html">Mentions légales et confidentialité</a>
       <a class="link-u" href="#accueil">Haut de page ↑</a>
     </div>
   </div>
+  <div class="foot__giant" aria-hidden="true"><span id="giant" data-bind="sigle">AE·ILF</span></div>
 </footer>
+
+<div class="curtain" id="curtain" aria-hidden="true"></div>
 
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
 <script src="assets/main.js"></script>
 </body>
 </html>

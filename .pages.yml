@@ -17,12 +17,12 @@ content:
       - { name: lieu, label: Petite ligne au-dessus du titre, type: string }
       - { name: titreLigne1, label: Grand titre - ligne 1, type: string }
       - { name: titreLigne2, label: Grand titre - ligne 2, type: string }
-      - { name: titreLigne3, label: Grand titre - ligne 3 (en italique bleu), type: string }
+      - { name: titreLigne3, label: Grand titre - ligne 3 (en Times italique bleu), type: string }
       - { name: accroche, label: Phrase d'accroche, type: text }
-      - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
+      - { name: manifeste, label: "Art. 1 - Texte de présentation (mettez un mot *entre astérisques* pour l'afficher en Times italique)", type: text }
       - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }
       - { name: motsCles, label: Mots du bandeau défilant, type: string, list: true }
-      - { name: adhesionTitre, label: Art. 5 - Titre, type: string }
+      - { name: adhesionTitre, label: "Art. 5 - Titre (*astérisques* = Times italique)", type: string }
       - { name: adhesionTexte, label: Art. 5 - Texte, type: text }
       - { name: adhesionPrix, label: Art. 5 - Montant de la cotisation, type: string }
       - { name: adhesionLien, label: Lien vers la page d'adhésion HelloAsso, type: string }
