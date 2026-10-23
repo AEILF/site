@@ -1,0 +1,8 @@
+{
+  "membres": [
+    { "nom": "Prénom Nom", "role": "Président(e)", "promo": "Master 2", "photo": "" },
+    { "nom": "Prénom Nom", "role": "Vice-président(e)", "promo": "Master 1", "photo": "" },
+    { "nom": "Prénom Nom", "role": "Trésorier(ère)", "promo": "Master 1", "photo": "" },
+    { "nom": "Prénom Nom", "role": "Secrétaire", "promo": "Licence 3", "photo": "" }
+  ]
+}

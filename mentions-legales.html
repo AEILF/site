@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentions légales · AE·ILF</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top is-scrolled" id="top">
+  <div class="top__in">
+    <a class="brand" href="index.html" data-bind="sigle">AE·ILF</a>
+    <a class="link-u" href="index.html">← Retour au site</a>
+  </div>
+</header>
+
+<main class="legal wrap">
+  <h1>Mentions légales</h1>
+
+  <h2>Éditeur du site</h2>
+  <p><strong data-bind="nom">Association des étudiants de l'Institut Louis Favoreu</strong>, association régie par la loi du 1<sup>er</sup> juillet 1901.</p>
+  <p>Siège social : <span data-bind-m="siege">à compléter</span><br>
+     Numéro RNA : <span data-bind-m="rna">à compléter</span><br>
+     Contact : <span data-bind="email">à compléter</span></p>
+  <p>Directeur ou directrice de la publication : <span data-bind-m="directeurPublication">à compléter</span>.</p>
+
+  <h2>Hébergement</h2>
+  <p>Le site est hébergé par <span data-bind-m="hebergeur">GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</span>.</p>
+
+  <h2>Indépendance</h2>
+  <p>L'association est une personne morale distincte d'Aix-Marseille Université et de l'Institut Louis Favoreu. Ce site n'est pas un site officiel de l'université.</p>
+
+  <h2>Données personnelles</h2>
+  <p>Ce site ne comporte aucun formulaire et ne dépose aucun cookie ni traceur. Les polices de caractères et les scripts sont hébergés avec le site : aucune donnée n'est transmise à un service tiers lors de la consultation des pages.</p>
+  <p>L'hébergeur peut enregistrer des données techniques de connexion (notamment l'adresse IP) pour assurer la sécurité du service.</p>
+  <p>Les adhésions en ligne sont gérées sur la plateforme HelloAsso, qui dispose de sa propre politique de confidentialité. Les données des adhérents sont utilisées uniquement pour la gestion de l'association et ne sont jamais cédées.</p>
+  <p>Conformément au règlement (UE) 2016/679 (RGPD) et à la loi n° 78-17 du 6 janvier 1978, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur les données vous concernant. Pour l'exercer, écrivez au bureau à l'adresse indiquée ci-dessus. Vous pouvez aussi introduire une réclamation auprès de la CNIL.</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>Les textes et visuels du site appartiennent à l'association ou sont utilisés avec l'accord de leurs auteurs. Les photographies de personnes sont publiées avec leur consentement ; toute personne peut demander le retrait d'une photo la concernant.</p>
+</main>
+
+<script>
+  Promise.resolve().then(function () { return fetch("content/site.json", { cache: "no-cache" }); })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (site) {
+      if (!site) return;
+      document.querySelectorAll("[data-bind]").forEach(function (n) { var v = site[n.dataset.bind]; if (v) n.textContent = v; });
+      var m = site.mentions || {};
+      document.querySelectorAll("[data-bind-m]").forEach(function (n) { var v = m[n.dataset.bindM]; if (v) n.textContent = v; });
+    }).catch(function () {});
+</script>
+</body>
+</html>

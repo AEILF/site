@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AE·ILF Aix-en-Provence</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Association des étudiants de l'Institut Louis Favoreu, Aix-Marseille Université : conférences, concours de plaidoirie, vie associative.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <div class="top__in">
+    <a class="brand" href="#accueil" data-bind="sigle">AE·ILF</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#objet">Objet</a>
+      <a href="#activites">Activités</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#bureau">Bureau</a>
+    </nav>
+    <a class="btn btn--small js-adhesion" href="#adherer">Adhérer</a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="accueil">
+
+  <!-- Préambule -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <p class="eyebrow hero__eyebrow"><span class="dot"></span><span data-bind="lieu">Aix-en-Provence · Faculté de droit et de science politique</span></p>
+
+      <h1 class="hero__title" aria-label="Le droit public se pratique ensemble.">
+        <span class="line"><span class="line__in" data-bind="titreLigne1">Le droit public</span></span>
+        <span class="line line--indent"><span class="line__in" data-bind="titreLigne2">se pratique</span></span>
+        <span class="line"><em class="line__in" data-bind="titreLigne3">ensemble.</em></span>
+      </h1>
+
+      <div class="hero__aside">
+        <p class="hero__lede" data-bind="accroche">Conférences, concours, rencontres avec les praticiens : l'association fait vivre au quotidien la communauté des étudiants en droit public d'Aix-en-Provence.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--accent magnetic js-adhesion" href="#adherer"><span>Rejoindre l'association</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="link-u" href="#agenda">Voir l'agenda</a>
+        </div>
+      </div>
+
+      <ol class="toc" aria-label="Sommaire">
+        <li><a href="#objet"><span class="toc__n">Art. 1</span><span>Objet</span></a></li>
+        <li><a href="#activites"><span class="toc__n">Art. 2</span><span>Activités</span></a></li>
+        <li><a href="#agenda"><span class="toc__n">Art. 3</span><span>Agenda</span></a></li>
+        <li><a href="#bureau"><span class="toc__n">Art. 4</span><span>Bureau</span></a></li>
+        <li><a href="#adherer"><span class="toc__n">Art. 5</span><span>Adhésion</span></a></li>
+      </ol>
+
+      <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="seal-path" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+        <g class="seal__ring">
+          <text><textPath href="#seal-path" textLength="488">ASSOCIATION ÉTUDIANTE · INSTITUT LOUIS FAVOREU · AIX ·</textPath></text>
+        </g>
+        <text class="seal__mark" x="100" y="114" text-anchor="middle">§</text>
+      </svg>
+    </div>
+    <div class="wrap"><div class="rule hero__rule"></div></div>
+  </section>
+
+  <!-- Art. 1 -->
+  <section class="article" id="objet">
+    <div class="wrap article__grid">
+      <p class="art-label"><span>Art. 1</span>Objet</p>
+      <div class="article__body">
+        <p class="manifesto" data-bind="manifeste" data-split>Nous croyons que le droit constitutionnel ne s'apprend pas seulement dans les amphithéâtres. Il se discute, se plaide, se confronte aux juges et aux praticiens. Notre association réunit celles et ceux qui veulent en faire l'expérience, de la licence au doctorat.</p>
+        <div class="institut reveal">
+          <p class="eyebrow">L'institut</p>
+          <p data-bind="institut">Fondé à Aix-en-Provence par le professeur Louis Favoreu (1936-2004), l'Institut Louis Favoreu – GERJC est un centre de recherche de la Faculté de droit et de science politique d'Aix-Marseille Université, associé au CNRS au sein de l'UMR 7318 DICE. Ses travaux portent notamment sur la justice constitutionnelle, les droits fondamentaux et le droit électoral.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bandeau -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee"></div>
+  </div>
+
+  <!-- Art. 2 -->
+  <section class="article" id="activites">
+    <div class="wrap article__grid">
+      <p class="art-label"><span>Art. 2</span>Activités</p>
+      <div class="article__body">
+        <h2 class="h2 reveal">Ce que nous faisons <em>toute l'année</em>.</h2>
+        <ol class="acts" id="acts"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Art. 3 -->
+  <section class="article" id="agenda">
+    <div class="wrap article__grid">
+      <p class="art-label"><span>Art. 3</span>Agenda</p>
+      <div class="article__body">
+        <h2 class="h2 reveal">Prochains <em>rendez-vous</em>.</h2>
+        <ul class="events" id="events"><li class="events__empty">Chargement de l'agenda…</li></ul>
+        <details class="past" id="past" hidden>
+          <summary><span>Événements passés</span><span class="past__count" id="past-count"></span></summary>
+          <ul class="events events--past" id="events-past"></ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Art. 4 -->
+  <section class="article" id="bureau">
+    <div class="wrap article__grid">
+      <p class="art-label"><span>Art. 4</span>Bureau</p>
+      <div class="article__body">
+        <h2 class="h2 reveal">Le bureau <em>de l'année</em>.</h2>
+        <ul class="team" id="team"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Art. 5 -->
+  <section class="join" id="adherer">
+    <div class="wrap join__grid">
+      <p class="art-label art-label--on-accent"><span>Art. 5</span>Adhésion</p>
+      <div class="join__body">
+        <h2 class="join__title" data-bind="adhesionTitre" data-split-chars>Rejoignez l'association.</h2>
+        <p class="join__text" data-bind="adhesionTexte">L'adhésion est ouverte à tous les étudiants.</p>
+        <div class="join__row">
+          <a class="btn btn--paper magnetic" id="join-link" href="https://www.helloasso.com" target="_blank" rel="noopener"><span>Adhérer en ligne</span><span class="btn__arrow" aria-hidden="true">↗</span></a>
+          <p class="join__price"><span class="eyebrow">Cotisation</span><span data-bind="adhesionPrix">À compléter</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <p class="foot__name" data-bind="nom">Association des étudiants de l'Institut Louis Favoreu</p>
+      <p class="foot__small">Association étudiante indépendante. Ce site n'est pas le site officiel d'Aix-Marseille Université.</p>
+    </div>
+    <div class="foot__contact">
+      <p class="eyebrow">Écrire au bureau</p>
+      <div class="copy">
+        <span class="copy__text" id="email" data-bind="email">contact@exemple.fr</span>
+        <button class="copy__btn" id="copy-btn" type="button">Copier</button>
+      </div>
+      <p class="foot__links" id="socials"></p>
+    </div>
+    <div class="foot__legal">
+      <a class="link-u" href="mentions-legales.html">Mentions légales et confidentialité</a>
+      <a class="link-u" href="#accueil">Haut de page ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

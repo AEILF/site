@@ -1,0 +1,93 @@
+# Configuration de la page d'administration (Pages CMS : https://app.pagescms.org)
+# Chaque bloc ci-dessous devient un formulaire dans l'admin.
+
+media:
+  input: images
+  output: images
+
+content:
+  - name: site
+    label: Textes du site
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - { name: nom, label: Nom complet de l'association, type: string }
+      - { name: sigle, label: Sigle (affiché en haut à gauche), type: string }
+      - { name: lieu, label: Petite ligne au-dessus du titre, type: string }
+      - { name: titreLigne1, label: Grand titre - ligne 1, type: string }
+      - { name: titreLigne2, label: Grand titre - ligne 2, type: string }
+      - { name: titreLigne3, label: Grand titre - ligne 3 (en italique bleu), type: string }
+      - { name: accroche, label: Phrase d'accroche, type: text }
+      - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
+      - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }
+      - { name: motsCles, label: Mots du bandeau défilant, type: string, list: true }
+      - { name: adhesionTitre, label: Art. 5 - Titre, type: string }
+      - { name: adhesionTexte, label: Art. 5 - Texte, type: text }
+      - { name: adhesionPrix, label: Art. 5 - Montant de la cotisation, type: string }
+      - { name: adhesionLien, label: Lien vers la page d'adhésion HelloAsso, type: string }
+      - { name: email, label: Adresse e-mail de contact, type: string }
+      - { name: instagram, label: Lien Instagram (facultatif), type: string }
+      - { name: linkedin, label: Lien LinkedIn (facultatif), type: string }
+      - name: mentions
+        label: Mentions légales
+        type: object
+        fields:
+          - { name: siege, label: Adresse du siège social, type: string }
+          - { name: rna, label: Numéro RNA, type: string }
+          - { name: directeurPublication, label: Directeur ou directrice de la publication, type: string }
+          - { name: hebergeur, label: Hébergeur, type: string }
+
+  - name: evenements
+    label: Agenda
+    type: file
+    path: content/evenements.json
+    format: json
+    fields:
+      - name: evenements
+        label: Événements
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: Titre, type: string, required: true }
+          - { name: date, label: Date, type: date, required: true }
+          - { name: heure, label: Heure (ex. 18:30), type: string }
+          - { name: lieu, label: Lieu, type: string }
+          - name: categorie
+            label: Catégorie
+            type: select
+            options:
+              values: [Conférence, Concours, Rencontre professionnelle, Vie associative, Autre]
+          - { name: description, label: Description courte, type: text }
+          - { name: lien, label: Lien d'inscription ou billetterie (facultatif), type: string }
+          - { name: exemple, label: Afficher le badge « Exemple », type: boolean }
+
+  - name: activites
+    label: Activités
+    type: file
+    path: content/activites.json
+    format: json
+    fields:
+      - name: activites
+        label: Activités
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: texte, label: Texte, type: text }
+
+  - name: bureau
+    label: Bureau
+    type: file
+    path: content/bureau.json
+    format: json
+    fields:
+      - name: membres
+        label: Membres du bureau
+        type: object
+        list: true
+        fields:
+          - { name: nom, label: Prénom et nom, type: string }
+          - { name: role, label: Fonction, type: string }
+          - { name: promo, label: Promotion, type: string }
+          - { name: photo, label: Photo (facultative), type: image }

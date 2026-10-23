@@ -1,0 +1,8 @@
+{
+  "activites": [
+    { "titre": "Conférences et débats", "texte": "Des universitaires, des magistrats et des avocats viennent discuter avec les étudiants de l'actualité du droit public et des grandes décisions de l'année." },
+    { "titre": "Concours de plaidoirie", "texte": "Nous préparons les équipes aux concours de procès simulés et organisons nos propres joutes oratoires, en partenariat avec les enseignants." },
+    { "titre": "Accompagnement des étudiants", "texte": "Parrainage entre promotions, partage de fiches, conseils pour les candidatures en master, en stage ou en doctorat." },
+    { "titre": "Vie associative", "texte": "Soirées d'intégration, sorties, gala de fin d'année : ce qui fait une promotion se joue aussi en dehors des cours." }
+  ]
+}
