@@ -310,7 +310,7 @@
       });
       if (facts.children.length) inner.appendChild(facts);
 
-      if (p.email || p.instagram) {
+      if (p.email || p.instagram || p.lien) {
         var c = el("div", "pole__contact");
         if (p.email) {
           var mail = el("span", "pole__mail", p.email);
@@ -321,6 +321,13 @@
           w.appendChild(el("span", null, "Écrire au pôle")); w.appendChild(el("span", "btn__arrow", "→"));
           c.appendChild(w);
         }
+        if (p.lien) {
+          var lk = el("a", "btn btn--secondary" + (/^https?:/i.test(p.lien) ? "" : " js-transition"));
+          lk.href = p.lien; lk.setAttribute("data-cursor", "Ouvrir");
+          if (/^https?:/i.test(p.lien)) { lk.target = "_blank"; lk.rel = "noopener"; }
+          lk.appendChild(el("span", null, p.lienTexte || "En savoir plus")); lk.appendChild(el("span", "btn__arrow", "→"));
+          c.appendChild(lk);
+        }
         if (p.instagram) { var ig = el("a", "link", "Instagram du pôle"); ig.href = p.instagram; ig.target = "_blank"; ig.rel = "noopener"; c.appendChild(ig); }
         inner.appendChild(c);
       }
@@ -328,6 +335,30 @@
       li.appendChild(body);
       list.appendChild(li);
     });
+  }
+
+  // Annexe I : les trois derniers articles du carnet, qui s'ouvrent sur la page dédiée
+  function renderCarnet(data) {
+    var grid = $("#carnet-grid"), sec = $("#carnet");
+    if (!grid || !data || !data.articles || !data.articles.length) return;
+    var slug = function (s) { return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80); };
+    data.articles.filter(function (a) { return a && a.titre; })
+      .sort(function (a, b) { return (parseDate(b.date) || 0) - (parseDate(a.date) || 0); })
+      .slice(0, 3).forEach(function (a) {
+        var d = parseDate(a.date);
+        var li = el("li"), c = el("a", "r-card js-transition");
+        c.href = "recherche.html#" + slug(a.slug || a.titre); c.setAttribute("data-cursor", "Lire");
+        var k = el("div", "r-card__kick");
+        k.appendChild(el("span", "label label--blue", a.rubrique || "Article"));
+        k.appendChild(el("span", "r-card__date", d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : ""));
+        c.appendChild(k);
+        if (a.exemple) { var ex = el("span", "tag tag--outline", "Exemple"); ex.style.alignSelf = "flex-start"; c.appendChild(ex); }
+        c.appendChild(el("h3", "r-card__t", a.titre));
+        if (a.chapeau) c.appendChild(el("p", "r-card__c", a.chapeau));
+        var m = el("div", "r-card__meta"); m.appendChild(el("span", null, a.auteurs || "")); m.appendChild(el("span", "r-card__arrow", "→"));
+        c.appendChild(m); li.appendChild(c); grid.appendChild(li);
+      });
+    sec.hidden = false;
   }
 
   function setupPoles() {
@@ -583,6 +614,7 @@
       var outer = el("span", "sl"), inner = el("span");
       ws.forEach(function (w, i) { if (i > 0 && w._space) inner.appendChild(document.createTextNode(" ")); inner.appendChild(w); });
       outer.appendChild(inner);
+      if (node.childNodes.length) node.appendChild(document.createTextNode(" "));
       node.appendChild(outer);
       return inner;
     });
@@ -820,6 +852,8 @@
   }
 
   function agenda() {
+    var cg = $("#carnet-grid");
+    if (cg && cg.children.length) gsap.from(cg.children, { clipPath: "inset(0% 0% 100% 0%)", stagger: 0.1, duration: 1.1, ease: "expo.inOut", scrollTrigger: { trigger: cg, start: "top 85%", once: true } });
     $all(".events").forEach(function (list) {
       var cells = $all(".events > li", list);
       gsap.from(cells, { clipPath: "inset(0% 0% 100% 0%)", stagger: 0.1, duration: 1.1, ease: "expo.inOut", scrollTrigger: { trigger: list, start: "top 85%", once: true } });
@@ -913,13 +947,14 @@
 
   setupWayfinding();
 
-  Promise.all([load("site"), load("activites"), load("evenements"), load("bureau"), load("poles")]).then(function (res) {
+  Promise.all([load("site"), load("activites"), load("evenements"), load("bureau"), load("poles"), load("recherche")]).then(function (res) {
     bindSite(res[0]);
     renderActivities(res[1]);
     renderEvents(res[2]);
     renderTeam(res[3]);
     renderPoles(res[4]);
     setupPoles();
+    renderCarnet(res[5]);
 
     if (!animate) return;
     var start = function () {

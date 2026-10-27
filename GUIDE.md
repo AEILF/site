@@ -41,7 +41,7 @@ Coût total : **0 €**. Un nom de domaine personnalisé reste facultatif (une d
 
 1. Allez sur https://app.pagescms.org et connectez-vous **avec le compte GitHub de l'association**.
 2. Autorisez l'accès au dépôt `site` quand c'est demandé.
-3. Ouvrez le dépôt : vous voyez à gauche **Textes du site**, **Agenda**, **Activités** et **Bureau**.
+3. Ouvrez le dépôt : vous voyez à gauche **Textes du site**, **Événements**, **Activités**, **Bureau**, **Pôles** et **Carnet de recherche**.
 4. Modifiez, puis cliquez sur **Save**. Le site en ligne est mis à jour en une à deux minutes.
 
 Pour ajouter un autre membre du bureau comme administrateur, deux possibilités :
@@ -51,6 +51,22 @@ Pour ajouter un autre membre du bureau comme administrateur, deux possibilités 
 ### Modifier les pôles
 
 Pôles → chaque pôle a un nom, une phrase courte, une présentation, une photo de groupe, les responsables, la liste des membres et une adresse e-mail (et, si vous le souhaitez, un lien Instagram). L'ordre des pôles dans l'admin est l'ordre d'affichage sur le site. Pensez à décocher « Afficher l'étiquette Exemple » une fois les vraies informations saisies.
+
+### Publier un article dans le carnet de recherche
+
+Le carnet a sa propre page (`recherche.html`), reliée au menu (« Recherche »), au pôle Recherche et à la page d'accueil (« Derniers articles »).
+
+Carnet de recherche → Articles → **Add an entry**, puis :
+
+1. **Titre**, **date**, **auteur(s)**, **rubrique** et **chapeau** (résumé de deux ou trois phrases).
+2. **Texte de l'article** : l'éditeur permet les intertitres, le gras, l'italique, les listes, les citations et les liens. Les intertitres (« Titre 2 ») alimentent automatiquement le sommaire de l'article.
+3. **Notes de bas de page** : ajoutez chaque note dans « Notes de bas de page », puis écrivez `[1]`, `[2]`… à l'endroit voulu du texte. Le site crée l'appel de note cliquable et le renvoi.
+4. **Image** (facultative) et sa description.
+5. **Save** : l'article apparaît en tête du carnet (« À la une ») en une à deux minutes.
+
+Chaque article a sa propre adresse, par exemple `recherche.html#qpc-mode-d-emploi`, créée à partir du titre : on peut la partager. Une référence à citer (auteur, titre, carnet, date, adresse, date de consultation) est générée automatiquement en bas de chaque article.
+
+Les trois articles livrés avec le site sont des **exemples** : remplacez-les par les travaux du pôle.
 
 ### Ajouter un événement
 
@@ -62,6 +78,7 @@ Les événements passés basculent **automatiquement** dans « Événements pass
 - [ ] Remplacer les **événements d'exemple** et décocher « Afficher le badge Exemple ».
 - [ ] Remplacer « Prénom Nom » dans le **Bureau** et ajouter les photos, avec l'accord des personnes.
 - [ ] Compléter les **Pôles** (membres, adresses e-mail, photos) et retirer l'étiquette « Exemple ».
+- [ ] Remplacer les **articles d'exemple** du carnet de recherche et indiquer l'adresse e-mail du pôle recherche.
 - [ ] Indiquer le **montant de la cotisation** et le **lien HelloAsso** réel.
 - [ ] Indiquer l'**adresse e-mail** de contact.
 - [ ] Compléter les **mentions légales** : siège, numéro RNA, directeur de la publication.

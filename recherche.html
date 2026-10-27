@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnet de recherche · AE Institut Louis Favoreu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Le carnet de recherche du pôle recherche de l'Association des étudiants de l'Institut Louis Favoreu : notes, commentaires et analyses de droit public.">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/Nexa-Heavy.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Nexa-ExtraLight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="page-recherche">
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="curtain curtain--enter" id="curtain-enter" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursor-label"></span></div>
+
+<header class="top" id="top">
+  <div class="top__in">
+    <a class="brand js-transition" href="index.html" aria-label="Retour à l'accueil">
+      <span class="brand__seal"><img class="brand__logo" src="assets/brand/logo-aeilf-bleu-400.webp" alt="Sceau de l'Association des étudiants de l'Institut Louis Favoreu" width="64" height="64"></span>
+      <span class="brand__name"><span>AE Institut</span><span>Louis Favoreu</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a class="js-transition" href="index.html#objet"><span class="nav__n" aria-hidden="true">01</span><span class="roll"><span data-text="L'association">L'association</span></span></a>
+      <a class="js-transition nav__opt" href="index.html#activites"><span class="nav__n" aria-hidden="true">02</span><span class="roll"><span data-text="Activités">Activités</span></span></a>
+      <a class="js-transition" href="index.html#agenda"><span class="nav__n" aria-hidden="true">03</span><span class="roll"><span data-text="Événements">Événements</span></span></a>
+      <a class="js-transition nav__opt" href="index.html#bureau"><span class="nav__n" aria-hidden="true">04</span><span class="roll"><span data-text="Le bureau">Le bureau</span></span></a>
+      <a class="js-transition" href="index.html#poles"><span class="nav__n" aria-hidden="true">05</span><span class="roll"><span data-text="Pôles">Pôles</span></span></a>
+      <a class="is-active" href="recherche.html" aria-current="page"><span class="nav__n" aria-hidden="true">I</span><span class="roll"><span data-text="Recherche">Recherche</span></span></a>
+      <a class="js-transition nav__join" href="index.html#adherer"><span class="nav__n" aria-hidden="true">06</span><span class="roll"><span data-text="Adhérer">Adhérer</span></span></a>
+    </nav>
+    <a class="btn btn--primary btn--nav magnetic js-transition" href="index.html#adherer" data-cursor="Adhérer"><span>Adhérer</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="contenu">
+
+  <!-- Vue « carnet » : présentation, article à la une, index filtrable -->
+  <div class="r-home" id="r-home">
+    <section class="r-hero">
+      <div class="wrap r-hero__grid">
+        <p class="label label--blue r-hero__kicker">Annexe I · Pôle recherche</p>
+        <h1 class="display r-hero__title" id="r-title" data-rich>Le carnet de <span class="ilf-accent">recherche</span>.</h1>
+        <div class="r-hero__side">
+          <p class="lead" id="r-chapeau">Notes, commentaires et analyses rédigés par les étudiants du pôle recherche.</p>
+          <p class="r-hero__note" id="r-presentation"></p>
+          <div class="r-hero__stats" aria-live="polite"><span><b id="r-count-a">0</b> articles</span><span><b id="r-count-r">0</b> rubriques</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="r-feature wrap" id="r-feature" aria-label="Article à la une" hidden></section>
+
+    <section class="r-index section" id="r-index" aria-labelledby="r-index-title">
+      <div class="wrap">
+        <div class="r-tools">
+          <h2 class="h2 split-lines" id="r-index-title">Tous les <span class="ilf-accent">articles</span>.</h2>
+          <div class="r-search">
+            <label class="label" for="r-q">Rechercher dans le carnet</label>
+            <div class="r-search__field">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14a7 7 0 1 0 0-14M21 21l-5-5"/></svg>
+              <input id="r-q" type="search" placeholder="Titre, auteur, mot-clé…" autocomplete="off">
+            </div>
+          </div>
+          <div class="r-filters" id="r-filters" role="group" aria-label="Filtrer par rubrique"></div>
+          <p class="r-result" id="r-result" aria-live="polite"></p>
+        </div>
+        <ul class="r-grid" id="r-grid"></ul>
+        <p class="r-empty" id="r-empty" hidden>Aucun article ne correspond à votre recherche. <button class="link r-reset" type="button" id="r-reset">Tout afficher</button></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Vue « lecture » d'un article -->
+  <article class="r-read" id="r-read" hidden>
+    <div class="wrap">
+      <a class="r-back" href="#r-index" id="r-back"><span aria-hidden="true">←</span> Tous les articles</a>
+      <header class="r-read__head">
+        <p class="r-read__kicker"><span class="label label--blue" id="a-rubrique"></span><span class="tag tag--outline" id="a-exemple" hidden>Exemple</span></p>
+        <h1 class="h1 r-read__title split-lines" id="a-titre"></h1>
+        <p class="r-read__meta" id="a-meta"></p>
+        <p class="lead r-read__chapeau" id="a-chapeau"></p>
+      </header>
+      <figure class="r-read__fig" id="a-fig" hidden><img id="a-img" alt=""></figure>
+      <div class="r-read__grid">
+        <aside class="r-aside" aria-label="Outils de lecture">
+          <div class="r-aside__in">
+            <nav class="r-toc" id="a-toc" aria-label="Sommaire de l'article">
+              <p class="label">Sommaire</p>
+              <ol id="a-toc-list"></ol>
+            </nav>
+            <div class="r-tools-col">
+              <button class="copy__btn" type="button" id="a-share">Copier le lien</button>
+            </div>
+          </div>
+        </aside>
+        <div class="r-prose" id="a-corps"></div>
+      </div>
+      <section class="r-notes" id="a-notes-wrap" aria-labelledby="a-notes-t" hidden>
+        <h2 class="label" id="a-notes-t">Notes</h2>
+        <ol id="a-notes"></ol>
+      </section>
+      <section class="r-cite" aria-labelledby="a-cite-t">
+        <h2 class="label label--blue" id="a-cite-t">Citer cet article</h2>
+        <p class="r-cite__txt" id="a-cite"></p>
+        <button class="copy__btn" type="button" id="a-cite-copy">Copier la référence</button>
+      </section>
+      <nav class="r-pager" id="a-pager" aria-label="Autres articles"></nav>
+    </div>
+  </article>
+
+  <!-- Appel à contributions -->
+  <section class="join r-cta" id="r-cta">
+    <div class="join__bg" aria-hidden="true"></div>
+    <div class="wrap join__grid">
+      <div class="join__body">
+        <p class="label">Contribuer</p>
+        <h2 class="join__title">Proposez votre <span class="ilf-accent">article</span>.</h2>
+        <p class="lead join__text">Note de jurisprudence, commentaire, synthèse de mémoire : écrivez au pôle recherche avec un résumé de votre projet.</p>
+        <div class="join__row">
+          <a class="btn btn--inverse magnetic" id="r-mail" href="mailto:recherche@exemple.fr" data-cursor="Écrire"><span>Écrire au pôle recherche</span><span class="btn__arrow" aria-hidden="true">→</span></a>
+          <p class="join__price"><span class="label">Adresse</span><span id="r-mail-txt">recherche@exemple.fr</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" id="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <img src="assets/brand/logo-aeilf-bleu-400.webp" alt="Sceau de l'Association des étudiants de l'Institut Louis Favoreu" width="120" height="120" loading="lazy">
+    </div>
+    <div class="foot__id">
+      <p class="foot__name">Association des étudiants de l'Institut Louis Favoreu</p>
+      <p class="foot__small">Association étudiante indépendante. Ce site n'est pas le site officiel d'Aix-Marseille Université. Les articles engagent leurs seuls auteurs.</p>
+    </div>
+    <div class="foot__contact">
+      <p class="label">Écrire au pôle recherche</p>
+      <p class="copy__text" id="foot-mail">recherche@exemple.fr</p>
+    </div>
+    <nav class="foot__map" aria-label="Plan du site">
+      <p class="label">Plan du site</p>
+      <a class="link js-transition" href="index.html#objet">Art. 1 · L'association</a>
+      <a class="link js-transition" href="index.html#activites">Art. 2 · Activités</a>
+      <a class="link js-transition" href="index.html#agenda">Art. 3 · Événements</a>
+      <a class="link js-transition" href="index.html#bureau">Art. 4 · Le bureau</a>
+      <a class="link js-transition" href="index.html#poles">Art. 5 · Pôles</a>
+      <a class="link js-transition" href="index.html#adherer">Art. 6 · Adhésion</a>
+      <a class="link" href="recherche.html" aria-current="page">Annexe I · Carnet de recherche</a>
+    </nav>
+    <div class="foot__legal">
+      <a class="link js-transition" href="mentions-legales.html">Mentions légales</a>
+      <a class="link" href="#contenu" id="foot-top">Haut de page</a>
+    </div>
+  </div>
+</footer>
+
+<a class="totop" id="totop" href="#contenu" aria-label="Revenir en haut de la page">
+  <svg viewBox="0 0 52 52" aria-hidden="true"><rect class="totop__track" x="1" y="1" width="50" height="50"/><rect class="totop__bar" id="totop-bar" x="1" y="1" width="50" height="50" pathLength="100"/></svg>
+  <span aria-hidden="true">↑</span>
+</a>
+
+<div class="curtain" id="curtain" aria-hidden="true"></div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/vendor/marked.umd.js"></script>
+<script src="assets/vendor/purify.min.js"></script>
+<script src="assets/recherche.js"></script>
+</body>
+</html>

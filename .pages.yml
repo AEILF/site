@@ -116,4 +116,38 @@ content:
           - { name: membres, label: Membres, type: string, list: true }
           - { name: email, label: Adresse e-mail du pôle, type: string }
           - { name: instagram, label: Lien Instagram du pôle (facultatif), type: string }
+          - { name: lien, label: "Lien vers une page (facultatif, ex. recherche.html)", type: string }
+          - { name: lienTexte, label: Texte du bouton de ce lien, type: string }
+          - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }
+
+  - name: recherche
+    label: Carnet de recherche
+    type: file
+    path: content/recherche.json
+    format: json
+    fields:
+      - { name: titre, label: "Titre de la page (un seul mot *entre astérisques* = Times italique)", type: string }
+      - { name: chapeau, label: Présentation courte, type: text }
+      - { name: presentation, label: Mention sous la présentation, type: text }
+      - { name: email, label: Adresse e-mail du pôle recherche, type: string }
+      - { name: nomCarnet, label: Nom du carnet (utilisé dans la référence à citer), type: string }
+      - name: articles
+        label: Articles
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: Titre, type: string, required: true }
+          - { name: date, label: Date de publication, type: date, required: true }
+          - { name: auteurs, label: Auteur(s), type: string }
+          - name: rubrique
+            label: Rubrique
+            type: select
+            options:
+              values: [Droit constitutionnel, Libertés fondamentales, Droit administratif, Droit comparé, Contentieux, Droit électoral, Méthode, Note de lecture, Actualité]
+          - { name: chapeau, label: Chapeau (résumé de deux ou trois phrases), type: text }
+          - { name: corps, label: "Texte de l'article (intertitres, listes, citations ; écrire [1], [2]… pour appeler les notes)", type: rich-text }
+          - { name: notes, label: "Notes de bas de page (la 1re correspond à [1], etc.)", type: text, list: true }
+          - { name: image, label: Image d'illustration (facultative), type: image }
+          - { name: imageAlt, label: Description de l'image (pour les malvoyants), type: string }
+          - { name: slug, label: "Adresse de l'article (facultatif : créée à partir du titre)", type: string }
           - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }

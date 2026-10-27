@@ -5,7 +5,11 @@
       "accroche": "Conférences, soirées et gala de fin d'année.",
       "description": "Le pôle organise les temps forts de l'année : conférences avec des universitaires et des praticiens, soirées d'intégration, afterworks et gala. Il gère la logistique, les réservations de salles et la billetterie.",
       "responsables": "Prénom Nom",
-      "membres": ["Prénom Nom", "Prénom Nom", "Prénom Nom"],
+      "membres": [
+        "Prénom Nom",
+        "Prénom Nom",
+        "Prénom Nom"
+      ],
       "email": "evenements@exemple.fr",
       "photo": "",
       "exemple": true
@@ -15,7 +19,10 @@
       "accroche": "Procès simulés, plaidoiries et joutes oratoires.",
       "description": "Le pôle accompagne les équipes qui participent aux concours de plaidoirie et de procès simulé, organise des ateliers de prise de parole et prépare le concours d'éloquence interne.",
       "responsables": "Prénom Nom",
-      "membres": ["Prénom Nom", "Prénom Nom"],
+      "membres": [
+        "Prénom Nom",
+        "Prénom Nom"
+      ],
       "email": "concours@exemple.fr",
       "photo": "",
       "exemple": true
@@ -25,7 +32,10 @@
       "accroche": "Réseaux sociaux, affiches et site internet.",
       "description": "Le pôle fait connaître les actions de l'association : publications sur les réseaux sociaux, affiches, photos des événements et mise à jour de ce site.",
       "responsables": "Prénom Nom",
-      "membres": ["Prénom Nom", "Prénom Nom"],
+      "membres": [
+        "Prénom Nom",
+        "Prénom Nom"
+      ],
       "email": "communication@exemple.fr",
       "photo": "",
       "exemple": true
@@ -35,8 +45,26 @@
       "accroche": "Cabinets, institutions et anciens étudiants.",
       "description": "Le pôle noue des partenariats avec des cabinets, des juridictions et des institutions, organise des rencontres professionnelles et fait vivre le réseau des anciens.",
       "responsables": "Prénom Nom",
-      "membres": ["Prénom Nom", "Prénom Nom"],
+      "membres": [
+        "Prénom Nom",
+        "Prénom Nom"
+      ],
       "email": "partenariats@exemple.fr",
+      "photo": "",
+      "exemple": true
+    },
+    {
+      "nom": "Recherche",
+      "accroche": "Notes, commentaires et carnet de recherche.",
+      "description": "Le pôle recherche anime le carnet de recherche de l'association : il accompagne les étudiants qui souhaitent publier une note, un commentaire ou une analyse, et organise des ateliers de méthodologie.",
+      "responsables": "Prénom Nom",
+      "membres": [
+        "Prénom Nom",
+        "Prénom Nom"
+      ],
+      "email": "recherche@exemple.fr",
+      "lien": "recherche.html",
+      "lienTexte": "Lire le carnet de recherche",
       "photo": "",
       "exemple": true
     }
