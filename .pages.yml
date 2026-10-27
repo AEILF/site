@@ -23,12 +23,13 @@ content:
       - { name: accroche, label: Phrase d'accroche, type: text }
       - { name: illustrationAlt, label: Description de l'illustration (pour les malvoyants), type: string }
       - { name: illustrationCredit, label: Crédit de l'illustration, type: string }
+      - { name: photosNoirEtBlanc, label: "Photos du bureau et des pôles en noir et blanc (règle de la charte)", type: boolean }
       - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
       - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }
       - { name: motsCles, label: Mots du bandeau défilant, type: string, list: true }
-      - { name: adhesionTitre, label: "Art. 5 - Titre (un seul mot *entre astérisques* = Times italique)", type: string }
-      - { name: adhesionTexte, label: Art. 5 - Texte, type: text }
-      - { name: adhesionPrix, label: Art. 5 - Montant de la cotisation, type: string }
+      - { name: adhesionTitre, label: "Art. 6 - Titre (un seul mot *entre astérisques* = Times italique)", type: string }
+      - { name: adhesionTexte, label: Art. 6 - Texte, type: text }
+      - { name: adhesionPrix, label: Art. 6 - Montant de la cotisation, type: string }
       - { name: adhesionLien, label: Lien vers la page d'adhésion HelloAsso, type: string }
       - { name: email, label: Adresse e-mail de contact, type: string }
       - { name: instagram, label: Lien Instagram (facultatif), type: string }
@@ -94,4 +95,25 @@ content:
           - { name: nom, label: Prénom et nom, type: string }
           - { name: role, label: Fonction, type: string }
           - { name: promo, label: Promotion, type: string }
-          - { name: photo, label: "Photo (facultative, affichée en noir et blanc)", type: image }
+          - { name: photo, label: Photo (facultative), type: image }
+
+  - name: poles
+    label: Pôles
+    type: file
+    path: content/poles.json
+    format: json
+    fields:
+      - name: poles
+        label: Pôles
+        type: object
+        list: true
+        fields:
+          - { name: nom, label: Nom du pôle, type: string, required: true }
+          - { name: accroche, label: Phrase courte, type: string }
+          - { name: description, label: Présentation, type: text }
+          - { name: photo, label: Photo des membres du pôle (facultative), type: image }
+          - { name: responsables, label: Responsable(s), type: string }
+          - { name: membres, label: Membres, type: string, list: true }
+          - { name: email, label: Adresse e-mail du pôle, type: string }
+          - { name: instagram, label: Lien Instagram du pôle (facultatif), type: string }
+          - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }

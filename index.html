@@ -16,6 +16,8 @@
 </head>
 <body>
 
+<a class="skip" href="#intro">Aller au contenu</a>
+
 <!-- Ouverture : aplat bleu, sceau inversé, compteur -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__in">
@@ -36,11 +38,12 @@
       <span class="brand__name"><span data-bind="nomLigne1">AE Institut</span><span data-bind="nomLigne2">Louis Favoreu</span></span>
     </a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
-      <a href="#objet">L'association</a>
-      <a href="#activites">Activités</a>
-      <a href="#agenda">Événements</a>
-      <a href="#bureau">Le bureau</a>
-      <a href="#adherer" class="nav__join">Adhérer</a>
+      <a href="#objet"><span class="nav__n" aria-hidden="true">01</span><span class="roll"><span data-text="L'association">L'association</span></span></a>
+      <a href="#activites"><span class="nav__n" aria-hidden="true">02</span><span class="roll"><span data-text="Activités">Activités</span></span></a>
+      <a href="#agenda"><span class="nav__n" aria-hidden="true">03</span><span class="roll"><span data-text="Événements">Événements</span></span></a>
+      <a href="#bureau"><span class="nav__n" aria-hidden="true">04</span><span class="roll"><span data-text="Le bureau">Le bureau</span></span></a>
+      <a href="#poles"><span class="nav__n" aria-hidden="true">05</span><span class="roll"><span data-text="Pôles">Pôles</span></span></a>
+      <a href="#adherer" class="nav__join"><span class="nav__n" aria-hidden="true">06</span><span class="roll"><span data-text="Adhérer">Adhérer</span></span></a>
     </nav>
     <a class="btn btn--primary btn--nav magnetic" href="#adherer" data-cursor="Adhérer"><span>Adhérer</span><span class="btn__arrow" aria-hidden="true">→</span></a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
@@ -63,6 +66,11 @@
       <h1 class="hero__name" id="hero-name" data-bind="nom">Association des étudiants de l'Institut Louis Favoreu</h1>
     </div>
     <a class="hero__down" href="#intro" aria-label="Découvrir l'association"><span aria-hidden="true">↓</span></a>
+    <a class="teaser" id="teaser" href="#agenda" hidden data-cursor="Agenda">
+      <span class="label label--blue">Prochain rendez-vous</span>
+      <span class="teaser__row"><span class="teaser__day" id="teaser-day"></span><span class="teaser__t" id="teaser-t"></span></span>
+      <span class="teaser__meta"><span id="teaser-meta"></span><span class="teaser__arrow" aria-hidden="true">→</span></span>
+    </a>
   </section>
 
   <!-- Préambule -->
@@ -87,7 +95,7 @@
   </section>
 
   <!-- Art. 1 -->
-  <section class="section" id="objet">
+  <section class="section" id="objet" data-chapter="Art. 1 · Objet">
     <div class="wrap section__grid">
       <div class="section__head">
         <p class="label label--blue">Art. 1 · Objet</p>
@@ -109,7 +117,7 @@
   </div>
 
   <!-- Art. 2 : défilement horizontal sur grand écran -->
-  <section class="section section--acts" id="activites">
+  <section class="section section--acts" id="activites" data-chapter="Art. 2 · Activités">
     <div class="acts-pin" id="acts-pin">
       <div class="wrap section__grid acts-head">
         <div class="section__head">
@@ -123,7 +131,7 @@
   </section>
 
   <!-- Art. 3 -->
-  <section class="section" id="agenda">
+  <section class="section" id="agenda" data-chapter="Art. 3 · Événements">
     <div class="wrap section__grid">
       <div class="section__head">
         <p class="label label--blue">Art. 3 · Événements</p>
@@ -140,7 +148,7 @@
   </section>
 
   <!-- Art. 4 -->
-  <section class="section" id="bureau">
+  <section class="section" id="bureau" data-chapter="Art. 4 · Bureau">
     <div class="wrap section__grid">
       <div class="section__head">
         <p class="label label--blue">Art. 4 · Bureau</p>
@@ -153,11 +161,25 @@
   </section>
 
   <!-- Art. 5 -->
-  <section class="join" id="adherer">
+  <section class="section" id="poles" data-chapter="Art. 5 · Pôles">
+    <div class="wrap section__grid">
+      <div class="section__head">
+        <p class="label label--blue">Art. 5 · Pôles</p>
+        <h2 class="h2 split-lines">Nos <span class="ilf-accent">pôles</span>.</h2>
+        <p class="poles__intro">Chaque pôle porte une partie des projets de l'association. Écrivez directement à celui qui vous intéresse.</p>
+      </div>
+      <div class="section__body">
+        <ol class="poles" id="poles-list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Art. 6 -->
+  <section class="join" id="adherer" data-chapter="Art. 6 · Adhésion">
     <div class="join__bg" id="join-bg" aria-hidden="true"></div>
     <div class="wrap join__grid">
       <div class="join__body">
-        <p class="label">Art. 5 · Adhésion</p>
+        <p class="label">Art. 6 · Adhésion</p>
         <h2 class="join__title" data-bind="adhesionTitre" data-rich data-split-chars>Rejoignez l'association.</h2>
         <p class="lead join__text" data-bind="adhesionTexte">L'adhésion est ouverte à tous les étudiants.</p>
         <div class="join__row">
@@ -198,12 +220,42 @@
       </div>
       <p class="foot__links" id="socials"></p>
     </div>
+    <nav class="foot__map" aria-label="Plan du site">
+      <p class="label">Plan du site</p>
+      <a class="link" href="#objet">Art. 1 · L'association</a>
+      <a class="link" href="#activites">Art. 2 · Activités</a>
+      <a class="link" href="#agenda">Art. 3 · Événements</a>
+      <a class="link" href="#bureau">Art. 4 · Le bureau</a>
+      <a class="link" href="#poles">Art. 5 · Pôles</a>
+      <a class="link" href="#adherer">Art. 6 · Adhésion</a>
+    </nav>
     <div class="foot__legal">
       <a class="link js-transition" href="mentions-legales.html">Mentions légales</a>
       <a class="link" href="#accueil">Haut de page</a>
     </div>
   </div>
 </footer>
+
+<!-- Repère de lecture : article en cours + sommaire rapide -->
+<div class="chapter" id="chapter">
+  <button class="chapter__btn" id="chapter-btn" type="button" aria-expanded="false" aria-controls="chapter-menu">
+    <span class="chapter__label">Sommaire</span>
+    <span class="chapter__now" id="chapter-now"><span class="chapter__txt">Art. 1 · Objet</span></span>
+  </button>
+  <nav class="chapter__menu" id="chapter-menu" aria-label="Sommaire" hidden>
+    <a href="#objet"><span>Art. 1</span>L'association</a>
+    <a href="#activites"><span>Art. 2</span>Activités</a>
+    <a href="#agenda"><span>Art. 3</span>Événements</a>
+    <a href="#bureau"><span>Art. 4</span>Le bureau</a>
+    <a href="#poles"><span>Art. 5</span>Pôles</a>
+    <a href="#adherer"><span>Art. 6</span>Adhésion</a>
+  </nav>
+</div>
+
+<a class="totop" id="totop" href="#accueil" aria-label="Revenir en haut de la page">
+  <svg viewBox="0 0 52 52" aria-hidden="true"><rect class="totop__track" x="1" y="1" width="50" height="50"/><rect class="totop__bar" id="totop-bar" x="1" y="1" width="50" height="50" pathLength="100"/></svg>
+  <span aria-hidden="true">↑</span>
+</a>
 
 <div class="curtain" id="curtain" aria-hidden="true"></div>
 

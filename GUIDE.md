@@ -48,15 +48,20 @@ Pour ajouter un autre membre du bureau comme administrateur, deux possibilités 
 - l'inviter comme collaborateur du dépôt sur GitHub (Settings → Collaborators) ;
 - l'inviter par e-mail depuis Pages CMS, ce qui ne lui demande pas de compte GitHub.
 
+### Modifier les pôles
+
+Pôles → chaque pôle a un nom, une phrase courte, une présentation, une photo de groupe, les responsables, la liste des membres et une adresse e-mail (et, si vous le souhaitez, un lien Instagram). L'ordre des pôles dans l'admin est l'ordre d'affichage sur le site. Pensez à décocher « Afficher l'étiquette Exemple » une fois les vraies informations saisies.
+
 ### Ajouter un événement
 
-Agenda → **Add an entry** → titre, date, heure, lieu, catégorie → Save.
-Les événements passés basculent **automatiquement** dans « Événements passés ». Il n'y a rien à supprimer.
+Événements → **Add an entry** → titre, date, heure, lieu, catégorie → Save.
+Les événements passés basculent **automatiquement** dans « Événements passés ». Il n'y a rien à supprimer. Le prochain événement s'affiche aussi automatiquement sur l'image d'ouverture (encadré « Prochain rendez-vous »).
 
 ### Avant la mise en ligne publique
 
 - [ ] Remplacer les **événements d'exemple** et décocher « Afficher le badge Exemple ».
 - [ ] Remplacer « Prénom Nom » dans le **Bureau** et ajouter les photos, avec l'accord des personnes.
+- [ ] Compléter les **Pôles** (membres, adresses e-mail, photos) et retirer l'étiquette « Exemple ».
 - [ ] Indiquer le **montant de la cotisation** et le **lien HelloAsso** réel.
 - [ ] Indiquer l'**adresse e-mail** de contact.
 - [ ] Compléter les **mentions légales** : siège, numéro RNA, directeur de la publication.
@@ -70,6 +75,6 @@ Transmettez au nouveau bureau l'identifiant et le mot de passe du compte GitHub,
 ## Respecter la charte graphique dans l'admin
 
 - **Times New Roman** : un seul mot par phrase, et seulement dans les titres. Dans l'admin, mettez ce mot *entre astérisques* (champ « Art. 5 - Titre »). Pour le grand titre, inscrivez un ou plusieurs mots dans « mot en Times » : s'il y en a plusieurs, ils défilent l'un après l'autre.
-- **Photos du bureau** : elles s'affichent automatiquement en noir et blanc, comme le veut la charte. Envoyez-les en couleur, le site s'en charge. L'illustration de la page d'accueil, elle, reste en couleur.
+- **Photos du bureau et des pôles** : par défaut, elles s'affichent en noir et blanc, comme le veut la charte. Envoyez-les en couleur, le site s'en charge. Pour les afficher en couleur, décochez « Photos du bureau et des pôles en noir et blanc » dans *Textes du site*. L'illustration de la page d'accueil, elle, reste toujours en couleur.
 - **Logo** : n'utilisez que le sceau officiel (dossier `assets/brand`). Ne le recadrez pas et ne le modifiez pas.
 - **Illustration de la page d'accueil** : indiquez son crédit (auteur ou agence) dans le champ « Crédit de l'illustration ». L'image elle-même ne se change pas depuis l'admin : le bâtiment et les arbres ont été détourés à la main pour que le sigle passe derrière. Une nouvelle image demandera un nouveau détourage.
