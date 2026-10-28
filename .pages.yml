@@ -23,7 +23,7 @@ content:
       - { name: accroche, label: Phrase d'accroche, type: text }
       - { name: illustrationAlt, label: Description de l'illustration (pour les malvoyants), type: string }
       - { name: illustrationCredit, label: Crédit de l'illustration, type: string }
-      - { name: photosNoirEtBlanc, label: "Photos du bureau et des pôles en noir et blanc (règle de la charte)", type: boolean }
+      - { name: photosNoirEtBlanc, label: "Portraits du bureau et photos des pôles en noir et blanc (règle de la charte ; la photo de groupe reste en couleur)", type: boolean }
       - { name: manifeste, label: Art. 1 - Texte de présentation, type: text }
       - { name: institut, label: Art. 1 - Paragraphe sur l'institut, type: text }
       - { name: motsCles, label: Mots du bandeau défilant, type: string, list: true }

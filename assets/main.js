@@ -292,7 +292,7 @@
     var g = crew.groups[gi], people = crewPeople(g);
     var img = $("#crew-img");
     img.src = g.photo; img.alt = g.alt || ("Photo de groupe : " + (g.intitule || "bureau"));
-    img.className = "crew__img" + (photosBW ? " grayscale" : "");
+    img.className = "crew__img"; // photo de groupe toujours en couleur, quel que soit le réglage noir et blanc
     if (/\/bureau-etendu\.jpg$/.test(g.photo)) img.srcset = "images/bureau-etendu-1200.jpg 1200w, images/bureau-etendu.jpg 2000w";
     else img.removeAttribute("srcset");
     img.sizes = "(max-width: 1340px) 100vw, 1280px";
