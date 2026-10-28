@@ -87,6 +87,25 @@ content:
     path: content/bureau.json
     format: json
     fields:
+      - name: groupes
+        label: Photos de groupe (bureau étendu, bureau restreint…)
+        type: object
+        list: true
+        fields:
+          - { name: intitule, label: "Intitulé (ex. Bureau étendu)", type: string, required: true }
+          - { name: annee, label: "Année (ex. 2026-2027)", type: string }
+          - { name: photo, label: Photo de groupe, type: image }
+          - { name: alt, label: Description de la photo (pour les malvoyants), type: string }
+          - name: personnes
+            label: "Personnes, de gauche à droite"
+            type: object
+            list: true
+            fields:
+              - { name: nom, label: Prénom et nom, type: string }
+              - { name: role, label: Fonction, type: string }
+              - { name: rang, label: "Rang (1 = premier rang, 2 = second rang)", type: number }
+              - { name: x, label: "Position horizontale du visage, en % de la largeur (0 = bord gauche)", type: number }
+              - { name: y, label: "Position verticale du visage, en % de la hauteur (0 = haut)", type: number }
       - name: membres
         label: Membres du bureau
         type: object

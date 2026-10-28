@@ -1,8 +1,87 @@
 {
+  "groupes": [
+    {
+      "intitule": "Bureau étendu",
+      "annee": "2026-2027",
+      "photo": "images/bureau-etendu.jpg",
+      "alt": "Photo de groupe des sept membres du bureau étendu, debout devant une porte en fer forgé d'un bâtiment en pierre.",
+      "personnes": [
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 1,
+          "x": 14.4,
+          "y": 55.3
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 1,
+          "x": 31.9,
+          "y": 56.7
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 2,
+          "x": 39.4,
+          "y": 46.9
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 1,
+          "x": 49.4,
+          "y": 58.1
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 2,
+          "x": 57.5,
+          "y": 45.0
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 1,
+          "x": 65.0,
+          "y": 56.3
+        },
+        {
+          "nom": "Prénom Nom",
+          "role": "Fonction",
+          "rang": 1,
+          "x": 83.2,
+          "y": 55.3
+        }
+      ]
+    }
+  ],
   "membres": [
-    { "nom": "Prénom Nom", "role": "Président(e)", "promo": "Master 2", "photo": "" },
-    { "nom": "Prénom Nom", "role": "Vice-président(e)", "promo": "Master 1", "photo": "" },
-    { "nom": "Prénom Nom", "role": "Trésorier(ère)", "promo": "Master 1", "photo": "" },
-    { "nom": "Prénom Nom", "role": "Secrétaire", "promo": "Licence 3", "photo": "" }
+    {
+      "nom": "Prénom Nom",
+      "role": "Président(e)",
+      "promo": "Master 2",
+      "photo": ""
+    },
+    {
+      "nom": "Prénom Nom",
+      "role": "Vice-président(e)",
+      "promo": "Master 1",
+      "photo": ""
+    },
+    {
+      "nom": "Prénom Nom",
+      "role": "Trésorier(ère)",
+      "promo": "Master 1",
+      "photo": ""
+    },
+    {
+      "nom": "Prénom Nom",
+      "role": "Secrétaire",
+      "promo": "Licence 3",
+      "photo": ""
+    }
   ]
 }

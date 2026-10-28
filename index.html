@@ -155,7 +155,23 @@
         <p class="label label--blue">Art. 4 · Bureau</p>
         <h2 class="h2 split-lines">Le bureau de l'<span class="ilf-accent">année</span>.</h2>
       </div>
-      <div class="section__body">
+      <div class="crew" id="crew" hidden>
+        <div class="crew__tabs" id="crew-tabs" role="tablist" aria-label="Photos de groupe" hidden></div>
+        <figure class="crew__fig">
+          <div class="crew__frame" id="crew-frame">
+            <img class="crew__img" id="crew-img" alt="" width="2000" height="1333" loading="lazy">
+            <div class="crew__shade" id="crew-shade" aria-hidden="true"></div>
+            <div class="crew__pins" id="crew-pins"></div>
+            <p class="crew__tag" id="crew-tag" aria-hidden="true"><b id="crew-tag-n"></b><span id="crew-tag-r"></span></p>
+          </div>
+          <figcaption class="crew__cap">
+            <p class="label label--blue crew__title" id="crew-title"></p>
+            <div class="crew__rows" id="crew-rows"></div>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="section__body crew__portraits">
+        <p class="label crew__sub">Portraits</p>
         <ul class="team" id="team"></ul>
       </div>
     </div>

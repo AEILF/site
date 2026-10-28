@@ -258,6 +258,124 @@
     });
   }
 
+  // Art. 4 : photos de groupe. Repères numérotés, légende « de gauche à droite », mise en lumière au survol
+  var crew = { groups: [], gi: 0 };
+  function renderCrew(data) {
+    var box = $("#crew");
+    crew.groups = ((data && data.groupes) || []).filter(function (g) { return g && g.photo; });
+    if (!box || !crew.groups.length) return;
+    box.hidden = false;
+    var tabs = $("#crew-tabs");
+    tabs.textContent = "";
+    if (crew.groups.length > 1) {
+      crew.groups.forEach(function (g, i) {
+        var t = el("button", "crew__tab", g.intitule || "Photo " + (i + 1));
+        t.type = "button"; t.setAttribute("role", "tab"); t.setAttribute("aria-selected", String(i === 0));
+        t.addEventListener("click", function () { switchCrew(i); });
+        tabs.appendChild(t);
+      });
+      tabs.hidden = false;
+    }
+    drawCrew(0);
+    $("#crew-frame").addEventListener("pointerleave", crewBlur);
+  }
+
+  function crewPeople(g) {
+    // Ordre de lecture : premier rang de gauche à droite, puis second rang
+    return (g.personnes || []).filter(function (p) { return p && isFinite(+p.x) && isFinite(+p.y); })
+      .map(function (p) { return { nom: p.nom || "", role: p.role || "", rang: +p.rang || 1, x: +p.x, y: +p.y }; })
+      .sort(function (a, b) { return a.rang - b.rang || a.x - b.x; });
+  }
+
+  function drawCrew(gi) {
+    crew.gi = gi;
+    var g = crew.groups[gi], people = crewPeople(g);
+    var img = $("#crew-img");
+    img.src = g.photo; img.alt = g.alt || ("Photo de groupe : " + (g.intitule || "bureau"));
+    img.className = "crew__img" + (photosBW ? " grayscale" : "");
+    if (/\/bureau-etendu\.jpg$/.test(g.photo)) img.srcset = "images/bureau-etendu-1200.jpg 1200w, images/bureau-etendu.jpg 2000w";
+    else img.removeAttribute("srcset");
+    img.sizes = "(max-width: 1340px) 100vw, 1280px";
+    $("#crew-title").textContent = [g.intitule, g.annee ? g.annee.replace("-", "–") : ""].filter(Boolean).join(" · ");
+
+    var pins = $("#crew-pins"), rows = $("#crew-rows");
+    pins.textContent = ""; rows.textContent = "";
+    var byRow = {};
+    people.forEach(function (p, i) {
+      var n = i + 1;
+      var pin = el("button", "crew__pin", String(n));
+      pin.type = "button";
+      pin.style.left = p.x + "%"; pin.style.top = Math.max(4, p.y - 12) + "%";
+      pin.setAttribute("aria-label", n + " : " + [p.nom, p.role].filter(Boolean).join(", "));
+      pin.addEventListener("pointerenter", function () { crewFocus(i); });
+      pin.addEventListener("focus", function () { crewFocus(i); });
+      pin.addEventListener("click", function () { crewFocus(i); });
+      pin.addEventListener("blur", crewBlur);
+      pins.appendChild(pin);
+      (byRow[p.rang] = byRow[p.rang] || []).push({ p: p, i: i, n: n });
+    });
+    Object.keys(byRow).sort().forEach(function (r) {
+      var row = el("div", "crew__row");
+      var many = Object.keys(byRow).length > 1;
+      row.appendChild(el("p", null, (many ? (r === "1" ? "Premier rang" : r === "2" ? "Second rang" : "Rang " + r) + ", de gauche à droite" : "De gauche à droite")));
+      var ol = el("ol");
+      byRow[r].forEach(function (it) {
+        var li = el("li"), b = el("button", "crew__who");
+        b.type = "button";
+        b.appendChild(el("b", null, String(it.n)));
+        var txt = el("span"); txt.appendChild(el("strong", null, it.p.nom));
+        if (it.p.role) txt.appendChild(document.createTextNode(", " + it.p.role));
+        b.appendChild(txt);
+        b.addEventListener("pointerenter", function () { crewFocus(it.i); });
+        b.addEventListener("pointerleave", crewBlur);
+        b.addEventListener("focus", function () { crewFocus(it.i); });
+        b.addEventListener("blur", crewBlur);
+        b.addEventListener("click", function () { crewFocus(it.i); });
+        li.appendChild(b); ol.appendChild(li);
+      });
+      row.appendChild(ol); rows.appendChild(row);
+    });
+    crew.people = people;
+  }
+
+  function crewFocus(i) {
+    var p = crew.people && crew.people[i];
+    if (!p) return;
+    var box = $("#crew"), frame = $("#crew-frame"), tag = $("#crew-tag");
+    box.classList.add("is-focus");
+    if (animate) gsap.to(frame, { "--sx": p.x + "%", "--sy": p.y + "%", duration: 0.6, ease: "expo.out", overwrite: true });
+    else { frame.style.setProperty("--sx", p.x + "%"); frame.style.setProperty("--sy", p.y + "%"); }
+    $("#crew-tag-n").textContent = p.nom;
+    $("#crew-tag-r").textContent = p.role;
+    tag.style.left = Math.min(86, Math.max(14, p.x)) + "%";
+    tag.style.top = Math.max(4, p.y - 12) + "%";
+    tag.classList.add("is-on");
+    $all(".crew__pin").forEach(function (b, j) { b.classList.toggle("is-on", j === i); });
+    $all(".crew__who").forEach(function (b) { b.classList.toggle("is-on", b.firstChild.textContent === String(i + 1)); });
+  }
+  function crewBlur() {
+    var box = $("#crew");
+    if (!box) return;
+    box.classList.remove("is-focus");
+    $("#crew-tag").classList.remove("is-on");
+    $all(".crew__pin.is-on, .crew__who.is-on").forEach(function (b) { b.classList.remove("is-on"); });
+  }
+
+  function switchCrew(i) {
+    if (i === crew.gi) return;
+    $all(".crew__tab").forEach(function (t, j) { t.setAttribute("aria-selected", String(j === i)); });
+    crewBlur();
+    if (!animate) { drawCrew(i); return; }
+    var frame = $("#crew-frame");
+    gsap.timeline()
+      .to(frame, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.55, ease: "expo.in" })
+      .add(function () { drawCrew(i); })
+      .fromTo(frame, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "expo.out" })
+      .fromTo("#crew-img", { scale: 1.15 }, { scale: 1, duration: 1.2, ease: "expo.out" }, "<")
+      .from(".crew__pin", { scale: 0, duration: 0.6, ease: "back.out(2)", stagger: 0.05 }, "-=0.6")
+      .from(".crew__who", { y: 10, opacity: 0, duration: 0.5, ease: "expo.out", stagger: 0.03 }, "<");
+  }
+
   function setupMailCopy(btn, value) {
     btn.addEventListener("click", function () {
       function done(label) { btn.textContent = label; setTimeout(function () { btn.textContent = "Copier"; }, 1800); }
@@ -899,6 +1017,19 @@
     gsap.from(".join__seal img", { opacity: 0, y: 40, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".join", start: "top 50%", once: true } });
   }
 
+  // La photo de groupe s'ouvre comme la porte qu'elle montre : d'abord la seule porte, puis toute l'équipe
+  function crewMotion() {
+    var frame = $("#crew-frame");
+    if (!frame || $("#crew").hidden) return;
+    gsap.fromTo(frame, { clipPath: "inset(0% 36% 0% 33%)" }, {
+      clipPath: "inset(0% 0% 0% 0%)", ease: "none",
+      scrollTrigger: { trigger: frame, start: "top 85%", end: "top 25%", scrub: 0.8 }
+    });
+    gsap.fromTo("#crew-img", { scale: 1.22 }, { scale: 1, ease: "none", scrollTrigger: { trigger: frame, start: "top 85%", end: "bottom 40%", scrub: 0.8 } });
+    gsap.from(".crew__pin", { scale: 0, opacity: 0, duration: 0.7, ease: "back.out(2)", stagger: 0.07, scrollTrigger: { trigger: frame, start: "top 45%", once: true } });
+    gsap.from([".crew__title", ".crew__row"], { y: 20, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".crew__cap", start: "top 90%", once: true } });
+  }
+
   function polesMotion() {
     var list = $("#poles-list");
     if (!list) return;
@@ -952,6 +1083,7 @@
     renderActivities(res[1]);
     renderEvents(res[2]);
     renderTeam(res[3]);
+    renderCrew(res[3]);
     renderPoles(res[4]);
     setupPoles();
     renderCarnet(res[5]);
@@ -970,6 +1102,7 @@
       agenda();
       team();
       polesMotion();
+      crewMotion();
       join();
       magnetic();
       pageTransitions();

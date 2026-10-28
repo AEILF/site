@@ -48,6 +48,16 @@ Pour ajouter un autre membre du bureau comme administrateur, deux possibilités 
 - l'inviter comme collaborateur du dépôt sur GitHub (Settings → Collaborators) ;
 - l'inviter par e-mail depuis Pages CMS, ce qui ne lui demande pas de compte GitHub.
 
+### Photos de groupe du bureau (bureau étendu, bureau restreint)
+
+Bureau → **Photos de groupe** → une entrée par photo : intitulé (ex. « Bureau étendu »), année, photo, description, puis la liste des **personnes**, chacune avec :
+
+- son **nom** et sa **fonction** ;
+- son **rang** : 1 pour le premier rang, 2 pour le second ;
+- la **position de son visage** sur la photo, en pourcentage : `x` de 0 (bord gauche) à 100 (bord droit), `y` de 0 (haut) à 100 (bas).
+
+Le site place lui-même les repères numérotés et rédige la légende « de gauche à droite ». Pour la photo actuelle du bureau étendu, les positions sont déjà réglées : il suffit de remplacer « Prénom Nom » et « Fonction », **dans l'ordre de gauche à droite**. Dès qu'une deuxième photo est ajoutée (bureau restreint), des onglets apparaissent pour passer de l'une à l'autre. Pour une nouvelle photo, je peux aussi calculer les positions à votre place.
+
 ### Modifier les pôles
 
 Pôles → chaque pôle a un nom, une phrase courte, une présentation, une photo de groupe, les responsables, la liste des membres et une adresse e-mail (et, si vous le souhaitez, un lien Instagram). L'ordre des pôles dans l'admin est l'ordre d'affichage sur le site. Pensez à décocher « Afficher l'étiquette Exemple » une fois les vraies informations saisies.
