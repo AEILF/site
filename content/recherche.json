@@ -2,50 +2,46 @@
   "titre": "Le carnet de *recherche*.",
   "chapeau": "Notes, commentaires et analyses rédigés par les étudiants du pôle recherche : un espace pour publier, discuter et faire circuler les travaux de droit public.",
   "presentation": "Le pôle recherche relit chaque proposition avant publication. Les articles engagent leurs seuls auteurs.",
-  "email": "recherche@exemple.fr",
-  "nomCarnet": "Carnet de recherche de l'AE Institut Louis Favoreu",
+  "email": "pole-recherche@aeilf.fr",
+  "nomCarnet": "Carnet de recherche de l'AEILF",
   "articles": [
     {
       "titre": "La question prioritaire de constitutionnalité, mode d'emploi",
-      "slug": "qpc-mode-d-emploi",
       "date": "2026-10-12",
       "auteurs": "Prénom Nom",
       "rubrique": "Droit constitutionnel",
       "chapeau": "Depuis 2010, tout justiciable peut contester devant le juge la conformité d'une loi aux droits et libertés que la Constitution garantit. Retour sur le fonctionnement de ce contrôle a posteriori.",
-      "image": "",
-      "corps": "## Un contrôle a posteriori\n\nLa question prioritaire de constitutionnalité (QPC) a été introduite à l'article 61-1 de la Constitution par la révision constitutionnelle du 23 juillet 2008 [1]. Ses modalités ont été précisées par une loi organique [2], et le mécanisme est entré en vigueur le 1er mars 2010.\n\nAvant cette réforme, la loi ne pouvait être contrôlée par le Conseil constitutionnel qu'avant sa promulgation, sur saisine des autorités énumérées à l'article 61. La QPC ouvre ce contrôle aux justiciables, à l'occasion d'une instance en cours.\n\n## Un double filtre\n\nLa question est posée devant une juridiction relevant du Conseil d'État ou de la Cour de cassation. Elle est transmise si trois conditions sont réunies :\n\n- la disposition contestée est applicable au litige ou à la procédure, ou constitue le fondement des poursuites ;\n- elle n'a pas déjà été déclarée conforme à la Constitution par le Conseil constitutionnel, sauf changement des circonstances ;\n- la question n'est pas dépourvue de caractère sérieux.\n\nLe Conseil d'État ou la Cour de cassation dispose alors de trois mois pour décider du renvoi au Conseil constitutionnel, qui statue à son tour dans un délai de trois mois.\n\n## Les effets de la décision\n\nSelon l'article 62 de la Constitution, une disposition déclarée inconstitutionnelle sur le fondement de l'article 61-1 est abrogée à compter de la publication de la décision ou d'une date ultérieure fixée par celle-ci. Le Conseil constitutionnel peut ainsi moduler dans le temps les effets de sa décision.\n\n> Cet article est un exemple de mise en page. Il sera remplacé par les travaux du pôle recherche.",
+      "corps": "## Un contrôle a posteriori\n\nLa question prioritaire de constitutionnalité (QPC) a été introduite à l'article 61-1 de la Constitution par la révision constitutionnelle du 23 juillet 2008 [1]. Ses modalités ont été précisées par une loi organique [2], et le mécanisme est entré en vigueur le 1er mars 2010.\n\nAvant cette réforme, la loi ne pouvait être contrôlée par le Conseil constitutionnel qu'avant sa promulgation, sur saisine des autorités énumérées à l'article 61. La QPC ouvre ce contrôle aux justiciables, à l'occasion d'une instance en cours.\n\n## Un double filtre\n\nLa question est posée devant une juridiction relevant du Conseil d'État ou de la Cour de cassation. Elle est transmise si trois conditions sont réunies :\n\n- la disposition contestée est applicable au litige ou à la procédure, ou constitue le fondement des poursuites ;\n- elle n'a pas déjà été déclarée conforme à la Constitution par le Conseil constitutionnel, sauf changement des circonstances ;\n- la question n'est pas dépourvue de caractère sérieux.\n\nLe Conseil d'État ou la Cour de cassation dispose alors de trois mois pour décider du renvoi au Conseil constitutionnel, qui statue à son tour dans un délai de trois mois.\n\n## Les effets de la décision\n\nSelon l'article 62 de la Constitution, une disposition déclarée inconstitutionnelle sur le fondement de l'article 61-1 est abrogée à compter de la publication de la décision ou d'une date ultérieure fixée par celle-ci. Le Conseil constitutionnel peut ainsi moduler dans le temps les effets de sa décision.\n\n> Cet article est un exemple de mise en page. Il sera remplacé par les travaux du pôle recherche.\n\n",
       "notes": [
         "Loi constitutionnelle n° 2008-724 du 23 juillet 2008 de modernisation des institutions de la Ve République.",
         "Loi organique n° 2009-1523 du 10 décembre 2009 relative à l'application de l'article 61-1 de la Constitution."
       ],
+      "slug": "qpc-mode-d-emploi",
       "exemple": true
     },
     {
       "titre": "Le contrôle de conventionnalité de la loi, de Jacques Vabre à Nicolo",
-      "slug": "controle-de-conventionnalite",
       "date": "2026-09-28",
       "auteurs": "Prénom Nom",
       "rubrique": "Contentieux",
       "chapeau": "Le Conseil constitutionnel ayant refusé de contrôler la conformité des lois aux traités, ce contrôle est revenu aux juges ordinaires. Les deux ordres de juridiction l'ont accepté à quatorze ans d'intervalle.",
-      "image": "",
-      "corps": "## Le refus du Conseil constitutionnel\n\nDans sa décision du 15 janvier 1975 relative à la loi sur l'interruption volontaire de la grossesse [1], le Conseil constitutionnel a jugé qu'il ne lui appartenait pas, lorsqu'il est saisi sur le fondement de l'article 61 de la Constitution, d'examiner la conformité d'une loi aux stipulations d'un traité.\n\nL'article 55 de la Constitution, qui confère aux traités une autorité supérieure à celle des lois, restait donc à mettre en œuvre par les juges ordinaires.\n\n## La Cour de cassation\n\nQuelques mois plus tard, la Cour de cassation a écarté l'application d'une loi postérieure contraire au traité de Rome dans l'arrêt *Société des cafés Jacques Vabre* [2].\n\n## Le Conseil d'État\n\nLe Conseil d'État a longtemps refusé de faire prévaloir un traité sur une loi postérieure. Il a abandonné cette position avec l'arrêt *Nicolo* [3], par lequel il accepte de contrôler la compatibilité d'une loi, même postérieure, avec un traité.\n\n> Cet article est un exemple de mise en page. Il sera remplacé par les travaux du pôle recherche.",
+      "corps": "## Le refus du Conseil constitutionnel\n\nDans sa décision du 15 janvier 1975 relative à la loi sur l'interruption volontaire de la grossesse [1], le Conseil constitutionnel a jugé qu'il ne lui appartenait pas, lorsqu'il est saisi sur le fondement de l'article 61 de la Constitution, d'examiner la conformité d'une loi aux stipulations d'un traité.\n\nL'article 55 de la Constitution, qui confère aux traités une autorité supérieure à celle des lois, restait donc à mettre en œuvre par les juges ordinaires.\n\n## La Cour de cassation\n\nQuelques mois plus tard, la Cour de cassation a écarté l'application d'une loi postérieure contraire au traité de Rome dans l'arrêt *Société des cafés Jacques Vabre* [2].\n\n## Le Conseil d'État\n\nLe Conseil d'État a longtemps refusé de faire prévaloir un traité sur une loi postérieure. Il a abandonné cette position avec l'arrêt *Nicolo* [3], par lequel il accepte de contrôler la compatibilité d'une loi, même postérieure, avec un traité.\n\n> Cet article est un exemple de mise en page. Il sera remplacé par les travaux du pôle recherche.\n\n",
       "notes": [
         "Cons. const., décision n° 74-54 DC du 15 janvier 1975, Loi relative à l'interruption volontaire de la grossesse.",
         "Cass., ch. mixte, 24 mai 1975, Société des cafés Jacques Vabre.",
         "CE, Ass., 20 octobre 1989, Nicolo."
       ],
+      "slug": "controle-de-conventionnalite",
       "exemple": true
     },
     {
       "titre": "Rédiger un commentaire d'arrêt : la méthode en cinq étapes",
-      "slug": "methode-commentaire-d-arret",
       "date": "2026-09-14",
       "auteurs": "Prénom Nom",
       "rubrique": "Méthode",
       "chapeau": "Une fiche pratique pour structurer un commentaire, de la lecture de la décision à la rédaction du plan.",
-      "image": "",
-      "corps": "## 1. Lire la décision plusieurs fois\n\nUne première lecture permet de comprendre l'affaire. Les suivantes servent à repérer les faits utiles, la procédure, les arguments des parties et la solution retenue.\n\n## 2. Établir la fiche d'arrêt\n\nRésumez les faits, la procédure, les prétentions des parties, le problème de droit et la solution. Cette fiche ne figure pas telle quelle dans la copie, mais elle nourrit l'introduction.\n\n## 3. Formuler le problème de droit\n\nPosez la question juridique que la juridiction devait trancher, en termes abstraits et sous forme interrogative.\n\n## 4. Situer la décision\n\nDemandez-vous si la décision confirme, précise ou renverse une jurisprudence antérieure, et quelle sera sa portée.\n\n## 5. Construire le plan\n\nLe plan, en deux parties et deux sous-parties, doit commenter la décision elle-même : son sens, sa valeur et sa portée. Évitez le plan purement descriptif.\n\n> Cette fiche est un exemple de mise en page. Elle sera remplacée par les travaux du pôle recherche.",
-      "notes": [],
+      "corps": "## 1. Lire la décision plusieurs fois\n\nUne première lecture permet de comprendre l'affaire. Les suivantes servent à repérer les faits utiles, la procédure, les arguments des parties et la solution retenue.\n\n## 2. Établir la fiche d'arrêt\n\nRésumez les faits, la procédure, les prétentions des parties, le problème de droit et la solution. Cette fiche ne figure pas telle quelle dans la copie, mais elle nourrit l'introduction.\n\n## 3. Formuler le problème de droit\n\nPosez la question juridique que la juridiction devait trancher, en termes abstraits et sous forme interrogative.\n\n## 4. Situer la décision\n\nDemandez-vous si la décision confirme, précise ou renverse une jurisprudence antérieure, et quelle sera sa portée.\n\n## 5. Construire le plan\n\nLe plan, en deux parties et deux sous-parties, doit commenter la décision elle-même : son sens, sa valeur et sa portée. Évitez le plan purement descriptif.\n\n> Cette fiche est un exemple de mise en page. Elle sera remplacée par les travaux du pôle recherche.\n\n",
+      "slug": "methode-commentaire-d-arret",
       "exemple": true
     }
   ]
