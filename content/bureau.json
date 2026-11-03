@@ -39,13 +39,13 @@
           "role": "Fonction",
           "rang": 2,
           "x": 57.5,
-          "y": 45.0
+          "y": 45
         },
         {
           "nom": "Prénom Nom",
           "role": "Fonction",
           "rang": 1,
-          "x": 65.0,
+          "x": 65,
           "y": 56.3
         },
         {
@@ -60,28 +60,24 @@
   ],
   "membres": [
     {
-      "nom": "Prénom Nom",
-      "role": "Président(e)",
-      "promo": "Master 2",
-      "photo": ""
+      "nom": "Tristan Kleihauer ",
+      "role": "Président",
+      "promo": "Master 2 - Droit public fondamental "
     },
     {
-      "nom": "Prénom Nom",
-      "role": "Vice-président(e)",
-      "promo": "Master 1",
-      "photo": ""
+      "nom": "Victor Giaminardi",
+      "role": "Vice-président",
+      "promo": "Master 2 - Droit public fondamental "
     },
     {
-      "nom": "Prénom Nom",
-      "role": "Trésorier(ère)",
-      "promo": "Master 1",
-      "photo": ""
+      "nom": "Perrine Ensenat ",
+      "role": "Trésorière",
+      "promo": "Master 2 - Pratique des droits fondamentaux "
     },
     {
-      "nom": "Prénom Nom",
+      "nom": "Matteo Petitjean",
       "role": "Secrétaire",
-      "promo": "Licence 3",
-      "photo": ""
+      "promo": "Master 2 - Droit public fondamental "
     }
   ]
 }
