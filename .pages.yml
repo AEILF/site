@@ -52,7 +52,7 @@ content:
       - name: evenements
         label: Événements
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{date} · {titre}" } }
         fields:
           - { name: titre, label: Titre, type: string, required: true }
           - { name: date, label: Date, type: date, required: true }
@@ -76,7 +76,7 @@ content:
       - name: activites
         label: Activités
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{titre}" } }
         fields:
           - { name: titre, label: Titre, type: string }
           - { name: texte, label: Texte, type: text }
@@ -90,16 +90,16 @@ content:
       - name: groupes
         label: Photos de groupe (bureau étendu, bureau restreint…)
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{intitule} {annee}" } }
         fields:
           - { name: intitule, label: "Intitulé (ex. Bureau étendu)", type: string, required: true }
           - { name: annee, label: "Année (ex. 2026-2027)", type: string }
           - { name: photo, label: Photo de groupe, type: image }
           - { name: alt, label: Description de la photo (pour les malvoyants), type: string }
           - name: personnes
-            label: "Personnes, de gauche à droite"
+            label: "Personnes : premier rang de gauche à droite, puis second rang (la fiche n° X correspond au repère X sur la photo)"
             type: object
-            list: true
+            list: { collapsible: { collapsed: true, summary: "Repère {index} · {nom} — {role}" } }
             fields:
               - { name: nom, label: Prénom et nom, type: string }
               - { name: role, label: Fonction, type: string }
@@ -109,7 +109,7 @@ content:
       - name: membres
         label: Membres du bureau
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{nom} — {role}" } }
         fields:
           - { name: nom, label: Prénom et nom, type: string }
           - { name: role, label: Fonction, type: string }
@@ -125,7 +125,7 @@ content:
       - name: poles
         label: Pôles
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{nom}" } }
         fields:
           - { name: nom, label: Nom du pôle, type: string, required: true }
           - { name: accroche, label: Phrase courte, type: string }
@@ -153,7 +153,7 @@ content:
       - name: articles
         label: Articles
         type: object
-        list: true
+        list: { collapsible: { collapsed: true, summary: "{date} · {titre}" } }
         fields:
           - { name: titre, label: Titre, type: string, required: true }
           - { name: date, label: Date de publication, type: date, required: true }

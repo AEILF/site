@@ -251,8 +251,8 @@
       }
       li.appendChild(pic);
       var txt = el("div", "member__txt");
-      txt.appendChild(el("p", "member__n", m.nom));
-      txt.appendChild(el("p", "label member__r", [m.role, m.promo].filter(Boolean).join(" · ")));
+      txt.appendChild(el("p", "member__n", String(m.nom || "").trim()));
+      txt.appendChild(el("p", "label member__r", [m.role, m.promo].map(function (v) { return String(v || "").trim(); }).filter(Boolean).join(" · ")));
       li.appendChild(txt);
       list.appendChild(li);
     });
@@ -281,10 +281,11 @@
   }
 
   function crewPeople(g) {
-    // Ordre de lecture : premier rang de gauche à droite, puis second rang
-    return (g.personnes || []).filter(function (p) { return p && isFinite(+p.x) && isFinite(+p.y); })
-      .map(function (p) { return { nom: p.nom || "", role: p.role || "", rang: +p.rang || 1, x: +p.x, y: +p.y }; })
-      .sort(function (a, b) { return a.rang - b.rang || a.x - b.x; });
+    // Le numéro du repère est celui de la fiche dans l'admin (fiche n° 4 = repère 4)
+    return (g.personnes || []).map(function (p, i) {
+      if (!p || !isFinite(+p.x) || !isFinite(+p.y)) return null;
+      return { n: i + 1, nom: String(p.nom || "").trim(), role: String(p.role || "").trim(), rang: +p.rang || 1, x: +p.x, y: +p.y };
+    }).filter(Boolean);
   }
 
   function drawCrew(gi) {
@@ -302,7 +303,7 @@
     pins.textContent = ""; rows.textContent = "";
     var byRow = {};
     people.forEach(function (p, i) {
-      var n = i + 1;
+      var n = p.n;
       var pin = el("button", "crew__pin", String(n));
       pin.type = "button";
       pin.style.left = p.x + "%"; pin.style.top = Math.max(4, p.y - 12) + "%";
@@ -315,6 +316,7 @@
       (byRow[p.rang] = byRow[p.rang] || []).push({ p: p, i: i, n: n });
     });
     Object.keys(byRow).sort().forEach(function (r) {
+      byRow[r].sort(function (a, b) { return a.p.x - b.p.x; });
       var row = el("div", "crew__row");
       var many = Object.keys(byRow).length > 1;
       row.appendChild(el("p", null, (many ? (r === "1" ? "Premier rang" : r === "2" ? "Second rang" : "Rang " + r) + ", de gauche à droite" : "De gauche à droite")));
@@ -351,7 +353,7 @@
     tag.style.top = Math.max(4, p.y - 12) + "%";
     tag.classList.add("is-on");
     $all(".crew__pin").forEach(function (b, j) { b.classList.toggle("is-on", j === i); });
-    $all(".crew__who").forEach(function (b) { b.classList.toggle("is-on", b.firstChild.textContent === String(i + 1)); });
+    $all(".crew__who").forEach(function (b) { b.classList.toggle("is-on", b.firstChild.textContent === String(p.n)); });
   }
   function crewBlur() {
     var box = $("#crew");
