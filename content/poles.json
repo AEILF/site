@@ -54,12 +54,13 @@
       "nom": "Recherche",
       "accroche": "Notes, commentaires et carnet de recherche.",
       "description": "Le pôle recherche anime le carnet de recherche de l'association : il accompagne les étudiants qui souhaitent publier une note, un commentaire ou une analyse, et organise des ateliers de méthodologie.",
-      "responsables": "Prénom Nom",
+      "photo": "images/DSCF2780.jpg",
+      "responsables": "Dylan Abdou Ali ",
       "membres": [
-        "Prénom Nom",
+        "Elena Jury",
         "Prénom Nom"
       ],
-      "email": "recherche@exemple.fr",
+      "email": "pole.recherche@aeilf.fr",
       "lien": "recherche.html",
       "lienTexte": "Lire le carnet de recherche",
       "exemple": true
