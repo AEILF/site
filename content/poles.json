@@ -7,7 +7,7 @@
       "photo": "images/DSCF2715-2-1.jpg",
       "responsables": "Victor Giaminardi ",
       "email": "evenements@aeilf.fr",
-      "exemple": true
+      "exemple": false
     },
     {
       "nom": "Communication",
@@ -16,7 +16,7 @@
       "photo": "images/DSCF2778.jpg",
       "responsables": "Elena Jury, Maïlys Grepilloux",
       "email": "communication@aeilf.fr",
-      "exemple": true
+      "exemple": false
     },
     {
       "nom": "Recherche",
@@ -30,7 +30,7 @@
       "email": "recherche@aeilf.fr",
       "lien": "recherche.html",
       "lienTexte": "Lire le carnet de recherche",
-      "exemple": true
+      "exemple": false
     },
     {
       "nom": "Alumni & cohésion étudiante ",
@@ -39,7 +39,7 @@
       "photo": "images/DSCF2788.jpg",
       "responsables": "Ambre Poisson",
       "email": "alumni@aeilf.fr",
-      "exemple": true
+      "exemple": false
     }
   ]
 }
