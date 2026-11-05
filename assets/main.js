@@ -10,7 +10,6 @@
   var animate = hasGsap && !reduceMotion;
   var lenis = null;
   var accentWords = ["ensemble"];
-  var photosBW = true;
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Utilitaires ---------- */
@@ -102,7 +101,6 @@
       if (node.hasAttribute("data-rich")) setRich(node, v); else node.textContent = v.replace(/\*/g, "");
     });
 
-    if (typeof site.photosNoirEtBlanc === "boolean") photosBW = site.photosNoirEtBlanc;
 
     var sig = $("#hero-sigle");
     if (sig && site.sigle && site.sigle.trim() !== sig.textContent.trim()) setSigle(site.sigle);
@@ -243,7 +241,7 @@
       var li = el("li", "member");
       var pic = el("div", "member__pic");
       if (m.photo) {
-        var img = el("img", photosBW ? "grayscale" : "");
+        var img = el("img");
         img.src = m.photo; img.alt = m.nom || ""; img.loading = "lazy";
         pic.appendChild(img);
       } else {
@@ -293,7 +291,7 @@
     var g = crew.groups[gi], people = crewPeople(g);
     var img = $("#crew-img");
     img.src = g.photo; img.alt = g.alt || ("Photo de groupe : " + (g.intitule || "bureau"));
-    img.className = "crew__img"; // photo de groupe toujours en couleur, quel que soit le réglage noir et blanc
+    img.className = "crew__img";
     if (/\/bureau-etendu\.jpg$/.test(g.photo)) img.srcset = "images/bureau-etendu-1200.jpg 1200w, images/bureau-etendu.jpg 2000w";
     else img.removeAttribute("srcset");
     img.sizes = "(max-width: 1340px) 100vw, 1280px";
@@ -410,7 +408,7 @@
       var inner = el("div", "pole__inner");
       var fig = el("figure", "pole__pic");
       if (p.photo) {
-        var img = el("img", photosBW ? "grayscale" : "");
+        var img = el("img");
         img.src = p.photo; img.alt = "Les membres du pôle " + p.nom; img.loading = "lazy";
         fig.appendChild(img);
       } else {
