@@ -4,14 +4,14 @@
       "nom": "Événements",
       "accroche": "Conférences, soirées et gala de fin d'année.",
       "description": "Le pôle organise les temps forts de l'année : conférences avec des universitaires et des praticiens, soirées d'intégration, afterworks et gala. Il gère la logistique, les réservations de salles et la billetterie.",
-      "responsables": "Prénom Nom",
+      "photo": "images/DSCF2715.jpg",
+      "responsables": "Victor Giaminardi ",
       "membres": [
         "Prénom Nom",
         "Prénom Nom",
         "Prénom Nom"
       ],
-      "email": "evenements@exemple.fr",
-      "photo": "",
+      "email": "pole.evenements@aeilf.fr",
       "exemple": true
     },
     {
@@ -24,7 +24,6 @@
         "Prénom Nom"
       ],
       "email": "concours@exemple.fr",
-      "photo": "",
       "exemple": true
     },
     {
@@ -37,7 +36,6 @@
         "Prénom Nom"
       ],
       "email": "communication@exemple.fr",
-      "photo": "",
       "exemple": true
     },
     {
@@ -50,7 +48,6 @@
         "Prénom Nom"
       ],
       "email": "partenariats@exemple.fr",
-      "photo": "",
       "exemple": true
     },
     {
@@ -65,7 +62,6 @@
       "email": "recherche@exemple.fr",
       "lien": "recherche.html",
       "lienTexte": "Lire le carnet de recherche",
-      "photo": "",
       "exemple": true
     }
   ]
