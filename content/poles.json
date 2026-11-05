@@ -10,36 +10,12 @@
       "exemple": true
     },
     {
-      "nom": "Concours et éloquence",
-      "accroche": "Procès simulés, plaidoiries et joutes oratoires.",
-      "description": "Le pôle accompagne les équipes qui participent aux concours de plaidoirie et de procès simulé, organise des ateliers de prise de parole et prépare le concours d'éloquence interne.",
-      "responsables": "Prénom Nom",
-      "membres": [
-        "Prénom Nom",
-        "Prénom Nom"
-      ],
-      "email": "concours@exemple.fr",
-      "exemple": true
-    },
-    {
       "nom": "Communication",
       "accroche": "Réseaux sociaux, affiches et site internet.",
       "description": "Le pôle fait connaître les actions de l'association : publications sur les réseaux sociaux, affiches, photos des événements et mise à jour de ce site.",
       "photo": "images/DSCF2778.jpg",
       "responsables": "Elena Jury, Maïlys Grepilloux",
       "email": "communication@aeilf.fr",
-      "exemple": true
-    },
-    {
-      "nom": "Partenariats et carrières",
-      "accroche": "Cabinets, institutions et anciens étudiants.",
-      "description": "Le pôle noue des partenariats avec des cabinets, des juridictions et des institutions, organise des rencontres professionnelles et fait vivre le réseau des anciens.",
-      "responsables": "Prénom Nom",
-      "membres": [
-        "Prénom Nom",
-        "Prénom Nom"
-      ],
-      "email": "partenariats@exemple.fr",
       "exemple": true
     },
     {
@@ -54,6 +30,15 @@
       "email": "recherche@aeilf.fr",
       "lien": "recherche.html",
       "lienTexte": "Lire le carnet de recherche",
+      "exemple": true
+    },
+    {
+      "nom": "Alumni & cohésion étudiante ",
+      "accroche": "Relation avec les anciens étudiants de l'ILF ainsi que la cohésion entre les différentes promotions publicistes.",
+      "description": "Le pôle a pour but de tisser et d'entretenir des liens avec les alumni des différents masters de l'Institut Louis Favoreu, mais également d'entretenir une cohésion entre les étudiants publicistes. ",
+      "photo": "images/DSCF2788.jpg",
+      "responsables": "Ambre Poisson",
+      "email": "alumni@aeilf.fr",
       "exemple": true
     }
   ]
