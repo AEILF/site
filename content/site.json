@@ -1,7 +1,7 @@
 {
   "nom": "Association des étudiants de l'Institut Louis Favoreu",
   "sigle": "AEILF",
-  "nomLigne1": "AE Institut",
+  "nomLigne1": "Association des Étudiants de l'Institut ",
   "nomLigne2": "Louis Favoreu",
   "lieu": "Aix-en-Provence",
   "titreLigne1": "Le droit public",
@@ -30,8 +30,6 @@
   "adhesionPrix": "À compléter",
   "adhesionLien": "https://www.helloasso.com",
   "email": "contact@exemple.fr",
-  "instagram": "",
-  "linkedin": "",
   "mentions": {
     "siege": "Adresse du siège social à compléter",
     "rna": "W000000000",
