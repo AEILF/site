@@ -36,7 +36,7 @@
         },
         {
           "nom": "Matteo Petitjean",
-          "role": "Secrétaire",
+          "role": "Secrétaire général",
           "rang": 1,
           "x": 83.2,
           "y": 55.3
@@ -56,28 +56,6 @@
           "y": 45
         }
       ]
-    }
-  ],
-  "membres": [
-    {
-      "nom": "Tristan Kleihauer",
-      "role": "Président",
-      "promo": "Master 2 - Droit public fondamental"
-    },
-    {
-      "nom": "Victor Giaminardi",
-      "role": "Vice-président",
-      "promo": "Master 2 - Droit public fondamental"
-    },
-    {
-      "nom": "Perrine Ensenat",
-      "role": "Trésorière",
-      "promo": "Master 2 - Pratique des droits fondamentaux"
-    },
-    {
-      "nom": "Matteo Petitjean",
-      "role": "Secrétaire",
-      "promo": "Master 2 - Droit public fondamental"
     }
   ]
 }
