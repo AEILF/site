@@ -559,6 +559,16 @@
   setupTotop();
   pageTransitions();
 
+  // En-tête : même nom que sur l'accueil, tel que saisi dans l'admin (Textes du site)
+  fetch("content/site.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (site) {
+    if (!site) return;
+    $all(".brand__name [data-bind]").forEach(function (n) {
+      var v = site[n.getAttribute("data-bind")];
+      v = typeof v === "string" ? v.trim() : "";
+      n.hidden = !v; n.textContent = v;
+    });
+  }).catch(function () {});
+
   load().then(function (raw) {
     prepare(raw);
     renderHome();

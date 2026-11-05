@@ -95,9 +95,13 @@
 
   function bindSite(site) {
     if (!site) return;
+    // L'admin est la référence : un champ vidé (Pages CMS le retire alors du fichier) disparaît du site
     $all("[data-bind]").forEach(function (node) {
       var v = site[node.getAttribute("data-bind")];
-      if (typeof v !== "string" || v.trim() === "") return;
+      var empty = typeof v !== "string" || v.trim() === "";
+      node.hidden = empty;
+      if (empty) { node.textContent = ""; return; }
+      v = v.trim();
       if (node.hasAttribute("data-rich")) setRich(node, v); else node.textContent = v.replace(/\*/g, "");
     });
 
@@ -114,7 +118,8 @@
 
     var title = $("#hero-title");
     if (title) title.setAttribute("aria-label", [site.titreLigne1, site.titreLigne2, first].filter(Boolean).join(" ") + ".");
-    if (site.nomLigne1 && site.nomLigne2) document.title = site.nomLigne1 + " " + site.nomLigne2;
+    var brandName = [site.nomLigne1, site.nomLigne2].filter(function (v) { return v && String(v).trim(); }).join(" ");
+    if (brandName) document.title = brandName;
 
     var img = $("#hero-bg");
     if (img && site.illustrationAlt) img.alt = site.illustrationAlt;
