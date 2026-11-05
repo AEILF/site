@@ -105,15 +105,6 @@ content:
               - { name: rang, label: "Rang (1 = premier rang, 2 = second rang)", type: number }
               - { name: x, label: "Position horizontale du visage, en % de la largeur (0 = bord gauche)", type: number }
               - { name: y, label: "Position verticale du visage, en % de la hauteur (0 = haut)", type: number }
-      - name: membres
-        label: Membres du bureau
-        type: object
-        list: { collapsible: { collapsed: true, summary: "{nom} — {role}" } }
-        fields:
-          - { name: nom, label: Prénom et nom, type: string }
-          - { name: role, label: Fonction, type: string }
-          - { name: promo, label: Promotion, type: string }
-          - { name: photo, label: Photo (facultative), type: image }
 
   - name: poles
     label: Pôles

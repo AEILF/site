@@ -86,7 +86,7 @@ Les événements passés basculent **automatiquement** dans « Événements pass
 ### Avant la mise en ligne publique
 
 - [ ] Remplacer les **événements d'exemple** et décocher « Afficher le badge Exemple ».
-- [ ] Remplacer « Prénom Nom » dans le **Bureau** et ajouter les photos, avec l'accord des personnes.
+- [ ] Compléter les noms et fonctions de la **photo de groupe** du bureau, avec l'accord des personnes.
 - [ ] Compléter les **Pôles** (membres, adresses e-mail, photos) et retirer l'étiquette « Exemple ».
 - [ ] Remplacer les **articles d'exemple** du carnet de recherche et indiquer l'adresse e-mail du pôle recherche.
 - [ ] Indiquer le **montant de la cotisation** et le **lien HelloAsso** réel.

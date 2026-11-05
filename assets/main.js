@@ -406,17 +406,23 @@
       var body = el("div", "pole__body");
       body.id = id; body.setAttribute("role", "region"); body.setAttribute("aria-labelledby", head.id);
       var inner = el("div", "pole__inner");
-      var fig = el("figure", "pole__pic");
+      // Photo du pôle : elle reste habillée du numéro et du nom du pôle, sur un voile bleu
+      var fig = el("figure", "pole__pic" + (p.photo ? " has-photo" : ""));
       if (p.photo) {
         var img = el("img");
-        img.src = p.photo; img.alt = "Les membres du pôle " + p.nom; img.loading = "lazy";
+        img.src = p.photo; img.alt = "Le pôle " + p.nom; img.loading = "lazy";
         fig.appendChild(img);
-      } else {
-        var ph = el("span", "pole__ph");
-        ph.appendChild(el("b", null, String(n).padStart(2, "0")));
-        ph.appendChild(el("span", "label", "Photo du pôle à venir"));
-        fig.appendChild(ph);
+        fig.appendChild(el("span", "pole__veil"));
       }
+      var ph = el("figcaption", "pole__ph");
+      ph.appendChild(el("b", null, String(n).padStart(2, "0")));
+      var cap = el("span", "pole__cap");
+      cap.appendChild(el("span", "label", "Pôle " + n + " · " + p.nom));
+      var lead = String(p.responsables || "").trim();
+      if (p.photo && lead && !/^Prénom Nom$/.test(lead)) cap.appendChild(el("span", "pole__lead", lead));
+      if (!p.photo) cap.appendChild(el("span", "pole__lead", "Photo du pôle à venir"));
+      ph.appendChild(cap);
+      fig.appendChild(ph);
       inner.appendChild(fig);
       if (p.exemple) { var tg = el("span", "tag tag--outline", "Exemple"); tg.style.justifySelf = "start"; inner.appendChild(tg); }
       if (p.description) inner.appendChild(el("p", "pole__desc", p.description));
@@ -505,7 +511,7 @@
       if (prev) prev.classList.remove("is-active");
       next.classList.add("is-active");
       var body = next.querySelector(".pole__body");
-      var pic = body.querySelector(".pole__pic"), media = pic.firstElementChild;
+      var pic = body.querySelector(".pole__pic"), media = pic.querySelector("img") || pic.querySelector(".pole__ph b");
       var parts = $all(".pole__inner > :not(.pole__pic)", body);
       if (wide.matches) {
         if (prev && animate) gsap.to(prev.querySelector(".pole__inner"), { opacity: 0, duration: 0.3, ease: "power2.out", overwrite: true });
@@ -514,6 +520,8 @@
         gsap.fromTo(pic, { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "expo.inOut", overwrite: true });
         gsap.fromTo(media, { scale: 1.2, xPercent: 6 }, { scale: 1, xPercent: 0, duration: 1.3, ease: "expo.out", overwrite: true });
         gsap.fromTo(parts, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "expo.out", stagger: 0.06, delay: 0.2, overwrite: true });
+        gsap.fromTo(pic.querySelector(".pole__ph b"), { yPercent: 70, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.1, ease: "expo.out", delay: 0.35, overwrite: true });
+        gsap.fromTo(pic.querySelectorAll(".pole__cap > *"), { x: -16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: "expo.out", stagger: 0.08, delay: 0.5, overwrite: true });
       } else {
         if (prev) close(prev, instant);
         open(next, instant);
@@ -1042,6 +1050,22 @@
     }
   }
 
+  // Léger relief : la photo du pôle suit la souris, le numéro en sens inverse
+  function poleParallax() {
+    if (!finePointer) return;
+    $all(".pole__pic.has-photo").forEach(function (fig) {
+      var img = fig.querySelector("img"), num = fig.querySelector(".pole__ph b");
+      var ix = gsap.quickTo(img, "x", { duration: 1, ease: "power3.out" }), iy = gsap.quickTo(img, "y", { duration: 1, ease: "power3.out" });
+      var nx = gsap.quickTo(num, "x", { duration: 1, ease: "power3.out" });
+      gsap.set(img, { scale: 1.06 });
+      fig.addEventListener("pointermove", function (e) {
+        var r = fig.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+        ix(px * -18); iy(py * -12); nx(px * 14);
+      });
+      fig.addEventListener("pointerleave", function () { ix(0); iy(0); nx(0); });
+    });
+  }
+
   function magnetic() {
     if (!finePointer) return;
     $all(".magnetic").forEach(function (btn) {
@@ -1082,7 +1106,6 @@
     bindSite(res[0]);
     renderActivities(res[1]);
     renderEvents(res[2]);
-    renderTeam(res[3]);
     renderCrew(res[3]);
     renderPoles(res[4]);
     setupPoles();
@@ -1100,8 +1123,8 @@
       headings();
       activities();
       agenda();
-      team();
       polesMotion();
+      poleParallax();
       crewMotion();
       join();
       magnetic();
