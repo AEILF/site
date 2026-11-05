@@ -11,7 +11,7 @@
         "Prénom Nom",
         "Prénom Nom"
       ],
-      "email": "pole.evenements@aeilf.fr",
+      "email": "evenements@aeilf.fr",
       "exemple": true
     },
     {
@@ -30,12 +30,9 @@
       "nom": "Communication",
       "accroche": "Réseaux sociaux, affiches et site internet.",
       "description": "Le pôle fait connaître les actions de l'association : publications sur les réseaux sociaux, affiches, photos des événements et mise à jour de ce site.",
-      "responsables": "Prénom Nom",
-      "membres": [
-        "Prénom Nom",
-        "Prénom Nom"
-      ],
-      "email": "communication@exemple.fr",
+      "photo": "images/DSCF2778.jpg",
+      "responsables": "Elena Jury, Maïlys Grepilloux",
+      "email": "communication@aeilf.fr",
       "exemple": true
     },
     {
@@ -60,7 +57,7 @@
         "Elena Jury",
         "Prénom Nom"
       ],
-      "email": "pole.recherche@aeilf.fr",
+      "email": "recherche@aeilf.fr",
       "lien": "recherche.html",
       "lienTexte": "Lire le carnet de recherche",
       "exemple": true
