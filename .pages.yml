@@ -125,7 +125,7 @@ content:
           - { name: membres, label: Membres, type: string, list: true }
           - { name: email, label: Adresse e-mail du pôle, type: string }
           - { name: instagram, label: Lien Instagram du pôle (facultatif), type: string }
-          - { name: lien, label: "Lien vers une page (facultatif, ex. recherche.html)", type: string }
+          - { name: lien, label: "Lien vers une page (facultatif, ex. recherche/)", type: string }
           - { name: lienTexte, label: Texte du bouton de ce lien, type: string }
           - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }
 

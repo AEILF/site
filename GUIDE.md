@@ -64,7 +64,7 @@ Pôles → chaque pôle a un nom, une phrase courte, une présentation, une phot
 
 ### Publier un article dans le carnet de recherche
 
-Le carnet a sa propre page (`recherche.html`), reliée au menu (« Recherche »), au pôle Recherche et à la page d'accueil (« Derniers articles »).
+Le carnet a sa propre page (`/recherche/`), reliée au menu (« Recherche »), au pôle Recherche et à la page d'accueil (« Derniers articles »).
 
 Carnet de recherche → Articles → **Add an entry**, puis :
 
@@ -74,7 +74,7 @@ Carnet de recherche → Articles → **Add an entry**, puis :
 4. **Image** (facultative) et sa description.
 5. **Save** : l'article apparaît en tête du carnet (« À la une ») en une à deux minutes.
 
-Chaque article a sa propre adresse, par exemple `recherche.html#qpc-mode-d-emploi`, créée à partir du titre : on peut la partager. Une référence à citer (auteur, titre, carnet, date, adresse, date de consultation) est générée automatiquement en bas de chaque article.
+Chaque article a sa propre adresse, par exemple `/recherche/qpc-mode-d-emploi/`, créée à partir du titre : on peut la partager, et chaque article a son propre titre dans Google et dans les aperçus de lien. Évitez de changer le titre (ou le champ « Adresse de l'article ») d'un article déjà diffusé : son adresse changerait. Une référence à citer (auteur, titre, carnet, date, adresse, date de consultation) est générée automatiquement en bas de chaque article.
 
 Les trois articles livrés avec le site sont des **exemples** : remplacez-les par les travaux du pôle.
 
@@ -105,3 +105,14 @@ Transmettez au nouveau bureau l'identifiant et le mot de passe du compte GitHub,
 - **Photos** : toutes les photos du site s'affichent en couleur (choix du bureau, qui déroge sur ce point à la charte, laquelle prévoyait le noir et blanc).
 - **Logo** : n'utilisez que le sceau officiel (dossier `assets/brand`). Ne le recadrez pas et ne le modifiez pas.
 - **Illustration de la page d'accueil** : indiquez son crédit (auteur ou agence) dans le champ « Crédit de l'illustration ». L'image elle-même ne se change pas depuis l'admin : le bâtiment et les arbres ont été détourés à la main pour que le sigle passe derrière. Une nouvelle image demandera un nouveau détourage.
+
+## Les adresses du site
+
+| Page | Adresse |
+|---|---|
+| Accueil | `/` (les sections : `/#poles`, `/#agenda`…) |
+| Carnet de recherche | `/recherche/` |
+| Un article | `/recherche/nom-de-l-article/` |
+| Mentions légales | `/mentions-legales/` |
+
+Les pages d'articles sont fabriquées automatiquement par GitHub à chaque enregistrement (fichiers `scripts/build.mjs` et `.github/workflows/publication.yml`). Le suivi de chaque publication se fait sur la page **Actions** du dépôt. Les anciennes adresses (`recherche.html`, `mentions-legales.html`) redirigent vers les nouvelles.

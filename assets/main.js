@@ -476,7 +476,7 @@
       .slice(0, 3).forEach(function (a) {
         var d = parseDate(a.date);
         var li = el("li"), c = el("a", "r-card js-transition");
-        c.href = "recherche.html#" + slug(a.slug || a.titre); c.setAttribute("data-cursor", "Lire");
+        c.href = "recherche/" + slug(a.slug || a.titre) + "/"; c.setAttribute("data-cursor", "Lire");
         var k = el("div", "r-card__kick");
         k.appendChild(el("span", "label label--blue", a.rubrique || "Article"));
         k.appendChild(el("span", "r-card__date", d ? d.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : ""));

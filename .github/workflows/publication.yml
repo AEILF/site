@@ -1,0 +1,40 @@
+# Publie le site à chaque modification (depuis l'admin Pages CMS ou directement dans le dépôt).
+# Réglage nécessaire une seule fois : Settings → Pages → Source : « GitHub Actions ».
+name: Publication du site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si plusieurs enregistrements se suivent, seule la publication la plus récente va au bout
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Préparer le site (une page par article du carnet)
+        run: node scripts/build.mjs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

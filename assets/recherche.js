@@ -1,5 +1,7 @@
 /* Annexe I : carnet de recherche. Lit content/recherche.json (modifiable depuis l'admin),
-   affiche l'index filtrable des articles et la vue de lecture (adresse : recherche.html#nom-de-l-article). */
+   affiche l'index filtrable des articles et la vue de lecture.
+   Adresses : recherche/ pour le carnet, recherche/nom-de-l-article/ pour chaque article
+   (pages générées à la publication par scripts/build.mjs). */
 (function () {
   "use strict";
 
@@ -10,6 +12,17 @@
   var animate = hasGsap && !reduceMotion;
   var lenis = null;
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+
+  // Racine du site et adresse du carnet, en absolu : elles restent justes quand l'adresse change sans recharger la page
+  var SITE = new URL(document.body.getAttribute("data-root") || "../", location.href).href;
+  var CARNET = SITE + "recherche/";
+  function asset(p) { return !p || /^([a-z]+:|\/|data:)/i.test(p) ? p : SITE + p; }
+  function articleURL(slug) { return CARNET + encodeURIComponent(slug) + "/"; }
+  function slugFromLocation() {
+    var here = location.href.split("#")[0].split("?")[0];
+    if (here.indexOf(CARNET) !== 0) return document.body.getAttribute("data-article") || "";
+    return decodeURIComponent(here.slice(CARNET.length).replace(/\/+$/, "").replace(/\/index\.html$/, "").replace(/^index\.html$/, ""));
+  }
 
   var data = { articles: [] };
   var articles = [];
@@ -82,7 +95,7 @@
   }
 
   function load() {
-    return fetch("content/recherche.json", { cache: "no-cache" })
+    return fetch(SITE + "content/recherche.json", { cache: "no-cache" })
       .then(function (r) { if (!r.ok) throw new Error("recherche"); return r.json(); })
       .catch(function () { return null; });
   }
@@ -137,9 +150,9 @@
     if (articles.length) {
       var a = articles[0];
       var link = el("a", "r-feat");
-      link.href = "#" + a.slug; link.setAttribute("data-cursor", "Lire");
+      link.href = articleURL(a.slug); link.setAttribute("data-cursor", "Lire");
       var media = el("div", "r-feat__media");
-      if (a.image) { var img = el("img"); img.src = a.image; img.alt = ""; img.loading = "lazy"; media.appendChild(img); }
+      if (a.image) { var img = el("img"); img.src = asset(a.image); img.alt = ""; img.loading = "lazy"; media.appendChild(img); }
       else media.appendChild(el("span", "r-feat__word", a.rubrique || "Recherche"));
       var tag = el("span", "label r-feat__tag", "À la une"); media.appendChild(tag);
       link.appendChild(media);
@@ -170,7 +183,7 @@
   function card(a) {
     var li = el("li");
     var c = el("a", "r-card");
-    c.href = "#" + a.slug; c.setAttribute("data-cursor", "Lire");
+    c.href = articleURL(a.slug); c.setAttribute("data-cursor", "Lire");
     var kick = el("div", "r-card__kick");
     var rub = el("span", "label label--blue"); highlight(rub, a.rubrique || "Article", filter.q); kick.appendChild(rub);
     kick.appendChild(el("span", "r-card__date", a._date ? a._date.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : ""));
@@ -228,7 +241,7 @@
     $("#a-chapeau").textContent = a.chapeau || "";
     $("#a-chapeau").hidden = !a.chapeau;
     var fig = $("#a-fig");
-    if (a.image) { $("#a-img").src = a.image; $("#a-img").alt = a.imageAlt || ""; fig.hidden = false; } else fig.hidden = true;
+    if (a.image) { $("#a-img").src = asset(a.image); $("#a-img").alt = a.imageAlt || ""; fig.hidden = false; } else fig.hidden = true;
 
     // Corps : Markdown converti puis nettoyé (aucun script ni attribut dangereux ne passe)
     var html = window.marked ? marked.parse(String(a.corps || ""), { gfm: true, breaks: false }) : "";
@@ -238,7 +251,7 @@
     $all("a[href]", body).forEach(function (link) {
       if (/^https?:/i.test(link.getAttribute("href"))) { link.target = "_blank"; link.rel = "noopener"; }
     });
-    $all("img", body).forEach(function (im) { im.loading = "lazy"; });
+    $all("img", body).forEach(function (im) { im.loading = "lazy"; im.src = asset(im.getAttribute("src")); });
 
     // Appels de notes : « [1] » dans le texte renvoie à la note 1
     var notes = (a.notes || []).filter(Boolean);
@@ -285,7 +298,7 @@
     $("#a-toc").hidden = heads.length < 2;
 
     // Référence à citer
-    var url = location.href.split("#")[0] + "#" + a.slug;
+    var url = articleURL(a.slug);
     var cite = [a.auteurs, "« " + a.titre + " »", data.nomCarnet || "Carnet de recherche de l'AE Institut Louis Favoreu", longDate(a._date)].filter(Boolean).join(", ")
       + ", en ligne : " + url + " (consulté le " + longDate(new Date()) + ").";
     $("#a-cite").textContent = cite;
@@ -295,7 +308,7 @@
     var idx = articles.indexOf(a);
     [[articles[idx - 1], "← Article plus récent"], [articles[idx + 1], "Article plus ancien →"]].forEach(function (p) {
       if (!p[0]) { pager.appendChild(el("span")); return; }
-      var l = el("a"); l.href = "#" + p[0].slug; l.setAttribute("data-cursor", "Lire");
+      var l = el("a"); l.href = articleURL(p[0].slug); l.setAttribute("data-cursor", "Lire");
       l.appendChild(el("span", "label label--blue", p[1])); l.appendChild(el("b", null, p[0].titre));
       pager.appendChild(l);
     });
@@ -384,16 +397,38 @@
 
   function route(instant) {
     var h = decodeURIComponent(location.hash.replace(/^#/, ""));
-    if (!h || h === "r-index" || h === "contenu") {
-      var fromArticle = !!current;
-      if (fromArticle || instant) showView(null, { instant: instant, toIndex: h === "r-index" });
-      else if (h === "r-index") scrollTop(false, $("#r-index"));
+    var slug = slugFromLocation();
+    // Anciens liens « recherche/#article » : on passe à l'adresse propre
+    if (!slug && h && articles.some(function (x) { return x.slug === h; })) {
+      history.replaceState(null, "", articleURL(h)); slug = h; h = "";
+    }
+    if (slug && articles.some(function (x) { return x.slug === slug; })) {
+      if (!current || current.slug !== slug) showView(slug, { instant: instant });
+      else if (h && document.getElementById(h)) scrollTop(false, document.getElementById(h));
       return;
     }
-    if (articles.some(function (x) { return x.slug === h; })) { showView(h, { instant: instant }); return; }
-    // Ancres internes à l'article (notes, intertitres) : défilement simple
-    var t = document.getElementById(h);
-    if (t && current) scrollTop(false, t);
+    if (current || instant) showView(null, { instant: instant, toIndex: h === "r-index" });
+    else if (h === "r-index") scrollTop(false, $("#r-index"));
+  }
+
+  // Les liens vers le carnet ou un article changent l'adresse sans recharger la page (le bouton « retour » fonctionne)
+  function setupLinks() {
+    $all("a[href]").forEach(function (a) {
+      var h = a.getAttribute("href");
+      if (h && h.charAt(0) !== "#" && !/^(mailto|tel):/i.test(h)) a.setAttribute("href", a.href);
+    });
+    $("#r-back").setAttribute("href", CARNET + "#r-index");
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a || a.target === "_blank" || a.closest(".r-toc, .r-notes, .r-fn")) return;
+      var href = a.href;
+      if (href.indexOf(CARNET) !== 0 || /\.(json|jpe?g|png|webp|pdf)$/i.test(href.split("#")[0])) return;
+      e.preventDefault();
+      if (href !== location.href) history.pushState(null, "", href);
+      route(false);
+    });
+    window.addEventListener("popstate", function () { route(false); });
   }
 
   /* ---------- Découpage en lignes (titres) ---------- */
@@ -560,7 +595,7 @@
   pageTransitions();
 
   // En-tête : même nom que sur l'accueil, tel que saisi dans l'admin (Textes du site)
-  fetch("content/site.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (site) {
+  fetch(SITE + "content/site.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (site) {
     if (!site) return;
     $all(".brand__name [data-bind]").forEach(function (n) {
       var v = site[n.getAttribute("data-bind")];
@@ -574,9 +609,9 @@
     renderHome();
     setupSearch();
 
-    $("#a-share").addEventListener("click", function () { copy(this, location.href, "Copier le lien"); });
+    $("#a-share").addEventListener("click", function () { copy(this, current ? articleURL(current.slug) : CARNET, "Copier le lien"); });
     $("#a-cite-copy").addEventListener("click", function () { copy(this, $("#a-cite").textContent, "Copier la référence", $("#a-cite")); });
-    window.addEventListener("hashchange", function () { route(false); });
+    setupLinks();
 
     // Liens internes à l'article (sommaire, notes) : défilement doux sans changer de vue
     document.addEventListener("click", function (e) {
