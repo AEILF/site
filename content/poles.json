@@ -3,7 +3,7 @@
     {
       "nom": "Événements",
       "accroche": "Cafés-débats, voyages et temps forts de l'année.",
-      "description": "Le pôle organise les temps forts de l'année : cafés-débats, voyage institutionnel et moments de convivialité. Il s'occupe de la logistique, des réservations de salles et des inscriptions.",
+      "description": "Le pôle organise les cafés-débats, le voyage institutionnel et les autres rendez-vous de l’année : salles, inscriptions, logistique.",
       "photo": "images/DSCF2715-2-1.jpg",
       "responsables": "Victor Giaminardi",
       "email": "evenements@aeilf.fr",
@@ -12,7 +12,7 @@
     {
       "nom": "Communication",
       "accroche": "Réseaux sociaux, affiches et site internet.",
-      "description": "Le pôle fait connaître les actions de l'association : publications sur les réseaux sociaux, affiches, photos des événements et mise à jour de ce site.",
+      "description": "Le pôle s’occupe du site, des réseaux sociaux, des affiches et des photos.",
       "photo": "images/DSCF2778.jpg",
       "responsables": "Elena Jury, Maïlys Grepilloux",
       "email": "communication@aeilf.fr",
@@ -35,7 +35,7 @@
     {
       "nom": "Alumni & cohésion étudiante",
       "accroche": "Relation avec les anciens étudiants de l'ILF ainsi que la cohésion entre les différentes promotions publicistes.",
-      "description": "Le pôle a pour but de tisser et d'entretenir des liens avec les alumni des différents masters de l'Institut Louis Favoreu, mais également d'entretenir une cohésion entre les étudiants publicistes. ",
+      "description": "Le pôle retrouve les anciens de l’Institut, garde le contact avec eux et les met en relation avec les étudiants. Il s’occupe aussi de la cohésion entre promotions.",
       "photo": "images/DSCF2788.jpg",
       "responsables": "Ambre Poisson",
       "email": "alumni@aeilf.fr",

@@ -1,29 +1,29 @@
 {
   "activites": [
     {
-      "titre": "La recherche, pour de vrai",
-      "statut": "",
-      "texte": "Notre pôle recherche accompagne les étudiants qui veulent écrire : notes de jurisprudence, commentaires, synthèses de travaux. Les textes sont relus, puis publiés dans le carnet de recherche de l'association."
-    },
-    {
-      "titre": "Un réseau des anciens",
-      "statut": "Chantier de l'année",
-      "texte": "Retrouver les anciens de l'Institut, connaître leurs parcours et les faire revenir vers les étudiants : nous construisons cette année un véritable réseau alumni, utile pour s'orienter, trouver un stage ou un premier poste."
-    },
-    {
-      "titre": "2027 : un projet électoral",
-      "statut": "En préparation",
-      "texte": "L'élection présidentielle de 2027 est un moment de droit public autant que de débat public. Nous préparons un projet autour de ce scrutin ; sa forme se précisera au fil de l'année."
-    },
-    {
       "titre": "Les cafés-débats",
       "statut": "",
-      "texte": "Un sujet d'actualité, un café, une discussion ouverte entre étudiants, sans estrade ni cours magistral. Pas besoin d'être spécialiste pour venir : il suffit d'être curieux."
+      "texte": "Un sujet d’actualité, un café, une discussion entre étudiants. Ni estrade ni cours magistral, et pas besoin d’être spécialiste pour venir."
     },
     {
       "titre": "Voyages",
       "statut": "",
-      "texte": "Un voyage institutionnel pour découvrir de l'intérieur les institutions dont on étudie le droit, et, si le projet se confirme, un voyage de cohésion pour se retrouver entre promotions."
+      "texte": "Un voyage institutionnel pour voir de près les institutions dont on étudie le droit. Et, si le projet se confirme, un voyage de cohésion pour se retrouver entre promotions."
+    },
+    {
+      "titre": "Le carnet de recherche",
+      "statut": "",
+      "texte": "Une note de jurisprudence, un commentaire, une synthèse de travaux à publier ? Le pôle recherche vous aide à l’écrire, le relit, puis le met en ligne dans le carnet de recherche de l’association."
+    },
+    {
+      "titre": "Les anciens de l’Institut",
+      "statut": "",
+      "texte": "Nous cherchons à retrouver les anciens de l’Institut, à savoir ce qu’ils sont devenus et à les mettre en contact avec les étudiants actuels, pour s’orienter, trouver un stage ou un premier poste."
+    },
+    {
+      "titre": "Présidentielle 2027",
+      "statut": "En préparation",
+      "texte": "L’élection présidentielle de 2027 intéresse autant le droit public que le débat public. Nous préparons un projet autour de ce scrutin. Sa forme n’est pas arrêtée, et les idées sont les bienvenues."
     }
   ]
 }
