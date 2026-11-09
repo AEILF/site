@@ -173,7 +173,10 @@
     var items = (data && data.activites) || [];
     items.forEach(function (a, i) {
       var li = el("li", "act");
-      li.appendChild(el("p", "label act__n", "Art. 2-" + (i + 1)));
+      var top = el("div", "act__top");
+      top.appendChild(el("p", "label act__n", "Art. 2-" + (i + 1)));
+      if (a.statut && String(a.statut).trim()) top.appendChild(el("span", "act__tag", String(a.statut).trim()));
+      li.appendChild(top);
       li.appendChild(el("span", "act__big", String(i + 1).padStart(2, "0")));
       li.appendChild(el("h3", "h3 act__t", a.titre));
       li.appendChild(el("p", "act__d", a.texte));

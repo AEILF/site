@@ -383,6 +383,9 @@ a:hover .roll > span, a:focus-visible .roll > span { transform: translateY(-130%
 .act:hover::before { clip-path: circle(150% at var(--mx, 50%) var(--my, 50%)); }
 .act:hover { color: var(--ilf-blanc); }
 .act__n { color: var(--ilf-bleu); transition: color .5s; }
+.act__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 22px; }
+.act__tag { font: 800 11px/1 var(--ilf-font); letter-spacing: .1em; text-transform: uppercase; padding: 5px 8px; background: var(--ilf-bleu-200); color: var(--ilf-bleu-800); transition: background .5s, color .5s; }
+.act:hover .act__tag { background: var(--ilf-blanc); color: var(--ilf-bleu); }
 .act:hover .act__n { color: var(--ilf-blanc); }
 .act__big { font: 800 clamp(72px, 8vw, 112px)/.85 var(--ilf-font); letter-spacing: -.04em; color: var(--ilf-bleu-200); transition: color .5s; }
 .act:hover .act__big { color: var(--ilf-bleu-500); }

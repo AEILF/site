@@ -1,8 +1,29 @@
 {
   "activites": [
-    { "titre": "Conférences et débats", "texte": "Des universitaires, des magistrats et des avocats viennent discuter avec les étudiants de l'actualité du droit public et des grandes décisions de l'année." },
-    { "titre": "Concours de plaidoirie", "texte": "Nous préparons les équipes aux concours de procès simulés et organisons nos propres joutes oratoires, en partenariat avec les enseignants." },
-    { "titre": "Accompagnement des étudiants", "texte": "Parrainage entre promotions, partage de fiches, conseils pour les candidatures en master, en stage ou en doctorat." },
-    { "titre": "Vie associative", "texte": "Soirées d'intégration, sorties, gala de fin d'année : ce qui fait une promotion se joue aussi en dehors des cours." }
+    {
+      "titre": "La recherche, pour de vrai",
+      "statut": "",
+      "texte": "Notre pôle recherche accompagne les étudiants qui veulent écrire : notes de jurisprudence, commentaires, synthèses de travaux. Les textes sont relus, puis publiés dans le carnet de recherche de l'association."
+    },
+    {
+      "titre": "Un réseau des anciens",
+      "statut": "Chantier de l'année",
+      "texte": "Retrouver les anciens de l'Institut, connaître leurs parcours et les faire revenir vers les étudiants : nous construisons cette année un véritable réseau alumni, utile pour s'orienter, trouver un stage ou un premier poste."
+    },
+    {
+      "titre": "2027 : un projet électoral",
+      "statut": "En préparation",
+      "texte": "L'élection présidentielle de 2027 est un moment de droit public autant que de débat public. Nous préparons un projet autour de ce scrutin ; sa forme se précisera au fil de l'année."
+    },
+    {
+      "titre": "Les cafés-débats",
+      "statut": "",
+      "texte": "Un sujet d'actualité, un café, une discussion ouverte entre étudiants, sans estrade ni cours magistral. Pas besoin d'être spécialiste pour venir : il suffit d'être curieux."
+    },
+    {
+      "titre": "Voyages",
+      "statut": "",
+      "texte": "Un voyage institutionnel pour découvrir de l'intérieur les institutions dont on étudie le droit, et, si le projet se confirme, un voyage de cohésion pour se retrouver entre promotions."
+    }
   ]
 }

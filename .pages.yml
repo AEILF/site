@@ -61,7 +61,7 @@ content:
             label: Catégorie
             type: select
             options:
-              values: [Conférence, Concours, Atelier, Soirée, Rencontre professionnelle, Vie associative, Autre]
+              values: [Café-débat, Conférence, Recherche, Alumni, Voyage, Atelier, Soirée, Rencontre professionnelle, Vie associative, Autre]
           - { name: description, label: Description courte, type: text }
           - { name: lien, label: Lien d'inscription ou billetterie (facultatif), type: string }
           - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }
@@ -78,6 +78,7 @@ content:
         list: { collapsible: { collapsed: true, summary: "{titre}" } }
         fields:
           - { name: titre, label: Titre, type: string }
+          - { name: statut, label: "Étiquette facultative (ex. En préparation)", type: string }
           - { name: texte, label: Texte, type: text }
 
   - name: bureau
