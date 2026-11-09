@@ -123,7 +123,23 @@
 
     var img = $("#hero-bg");
     if (img && site.illustrationAlt) img.alt = site.illustrationAlt;
-    if (site.adhesionLien) { var join = $("#join-link"); if (join) join.href = site.adhesionLien; }
+    // Adhésion : sans vrai lien HelloAsso (ou équivalent), pas de bouton qui mène nulle part
+    var join = $("#join-link"), soon = $("#join-soon"), lien = String(site.adhesionLien || "").trim();
+    var realLink = /^https?:\/\/.+\/.+/.test(lien.replace(/\/+$/, ""));
+    if (join) { join.hidden = !realLink; if (realLink) join.href = lien; }
+    var price = $("#join-price");
+    if (price) price.hidden = !String(site.adhesionPrix || "").trim();
+    if (soon) {
+      soon.hidden = realLink;
+      soon.textContent = "";
+      if (!realLink) {
+        soon.appendChild(document.createTextNode("Les adhésions en ligne ouvrent très bientôt."));
+        var mail = String(site.email || "").trim();
+        if (mail) { soon.appendChild(document.createTextNode(" En attendant, écrivez au bureau : ")); var m = el("a", null, mail); m.href = "mailto:" + mail; soon.appendChild(m); soon.appendChild(document.createTextNode(".")); }
+      }
+    }
+    var fc = $(".foot__contact");
+    if (fc) fc.hidden = !String(site.email || "").trim() && !(site.instagram || site.linkedin);
 
     var socials = $("#socials");
     if (socials) {

@@ -5,7 +5,7 @@
       "accroche": "Conférences, soirées et gala de fin d'année.",
       "description": "Le pôle organise les temps forts de l'année : conférences avec des universitaires et des praticiens, soirées d'intégration, afterworks et gala. Il gère la logistique, les réservations de salles et la billetterie.",
       "photo": "images/DSCF2715-2-1.jpg",
-      "responsables": "Victor Giaminardi ",
+      "responsables": "Victor Giaminardi",
       "email": "evenements@aeilf.fr",
       "exemple": false
     },
@@ -23,7 +23,7 @@
       "accroche": "Notes, commentaires et carnet de recherche.",
       "description": "Le pôle recherche anime le carnet de recherche de l'association : il accompagne les étudiants qui souhaitent publier une note, un commentaire ou une analyse, et organise des événements autour de la recherche, comme des colloques étudiants.",
       "photo": "images/DSCF2780.jpg",
-      "responsables": "Dylan Abdou Ali ",
+      "responsables": "Dylan Abdou Ali",
       "membres": [
         "Elena Jury"
       ],
@@ -33,7 +33,7 @@
       "exemple": false
     },
     {
-      "nom": "Alumni & cohésion étudiante ",
+      "nom": "Alumni & cohésion étudiante",
       "accroche": "Relation avec les anciens étudiants de l'ILF ainsi que la cohésion entre les différentes promotions publicistes.",
       "description": "Le pôle a pour but de tisser et d'entretenir des liens avec les alumni des différents masters de l'Institut Louis Favoreu, mais également d'entretenir une cohésion entre les étudiants publicistes. ",
       "photo": "images/DSCF2788.jpg",

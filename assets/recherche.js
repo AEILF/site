@@ -125,6 +125,11 @@
     }
     var rubriques = [];
     articles.forEach(function (a) { if (a.rubrique && rubriques.indexOf(a.rubrique) === -1) rubriques.push(a.rubrique); });
+    // Carnet encore vide : on présente le projet au lieu d'un index sans article
+    var empty = !articles.length;
+    $("#r-soon").hidden = !empty;
+    $("#r-index").hidden = empty;
+    $("#r-stats").hidden = empty;
     $("#r-count-a").textContent = String(articles.length);
     $("#r-count-r").textContent = String(rubriques.length);
 
@@ -418,6 +423,9 @@
       if (h && h.charAt(0) !== "#" && !/^(mailto|tel):/i.test(h)) a.setAttribute("href", a.href);
     });
     $("#r-back").setAttribute("href", CARNET + "#r-index");
+    $all('a[href="#r-cta"]').forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); scrollTop(false, $("#r-cta")); });
+    });
     document.addEventListener("click", function (e) {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest && e.target.closest("a[href]");
@@ -562,6 +570,11 @@
       gsap.from(feat, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: feat, start: "top 88%", once: true } });
       var img = $(".r-feat__media img, .r-feat__word", feat);
       if (img) gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: feat, start: "top bottom", end: "bottom top", scrub: true } });
+    }
+    if (!$("#r-soon").hidden) {
+      gsap.from(".r-soon .split-lines", { y: 30, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: "#r-soon", start: "top 85%", once: true } });
+      gsap.from(".r-soon__kinds > li", { clipPath: "inset(0% 0% 100% 0%)", duration: 1.1, ease: "expo.inOut", stagger: 0.1, scrollTrigger: { trigger: ".r-soon__kinds", start: "top 88%", once: true } });
+      gsap.from(".r-soon__steps li", { x: -24, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".r-soon__steps", start: "top 90%", once: true } });
     }
     $all(".r-index .split-lines").forEach(function (h) {
       var lines = splitRich(h);
