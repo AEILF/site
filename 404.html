@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Page introuvable · AE Institut Louis Favoreu</title>
+<meta name="robots" content="noindex">
+<script>
+  // Anciens liens en /site/… (avant le changement d'adresse) : même page, sans /site
+  if (/^\/site(\/|$)/.test(location.pathname)) location.replace(location.pathname.replace(/^\/site/, "") + location.search + location.hash);
+</script>
+<style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:20vh auto;padding:0 1rem;color:#201E1D}a{color:#0B3C71}</style>
+</head>
+<body><h1>Page introuvable</h1><p>Cette page n'existe pas ou a été déplacée. <a href="/">Retour à l'accueil</a></p></body>
+</html>

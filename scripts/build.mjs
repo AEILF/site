@@ -6,7 +6,7 @@
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
 
 const OUT = "_site";
-const PUBLIC = ["index.html", "recherche.html", "mentions-legales.html", "recherche", "mentions-legales", "assets", "content", "images"];
+const PUBLIC = ["index.html", "404.html", "recherche.html", "mentions-legales.html", "recherche", "mentions-legales", "assets", "content", "images", "site"];
 
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT);
