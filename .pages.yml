@@ -55,14 +55,14 @@ content:
         fields:
           - { name: titre, label: Titre, type: string, required: true }
           - { name: date, label: Date, type: date, required: true }
-          - { name: heure, label: Heure (ex. 18:30), type: string }
+          - { name: heure, label: "Heure (ex. 18:30, ou 19:00 - 21:00)", type: string }
           - { name: lieu, label: Lieu, type: string }
           - name: categorie
             label: Catégorie
             type: select
             options:
               values: [Café-débat, Conférence, Recherche, Alumni, Voyage, Atelier, Soirée, Rencontre professionnelle, Vie associative, Autre]
-          - { name: description, label: Description courte, type: text }
+          - { name: description, label: "Description (les 3 premières lignes s'affichent, la suite se déplie ; sautez une ligne entre deux paragraphes)", type: text }
           - { name: lien, label: Lien d'inscription ou billetterie (facultatif), type: string }
           - { name: exemple, label: Afficher l'étiquette « Exemple », type: boolean }
 

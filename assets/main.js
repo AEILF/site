@@ -186,42 +186,127 @@
     if (count) count.textContent = "01 / " + String(items.length).padStart(2, "0");
   }
 
-  function eventCard(ev) {
-    var d = parseDate(ev.date);
-    var hasLink = ev.lien && String(ev.lien).trim() !== "";
-    var card = el(hasLink ? "a" : "div", "ev" + (hasLink ? "" : " ev--nolink"));
-    if (hasLink) { card.href = ev.lien; card.target = "_blank"; card.rel = "noopener"; card.setAttribute("data-cursor", "Ouvrir"); }
+  // « 19:00 - 21:00 » → « 19 h – 21 h » ; « 18:30 » → « 18 h 30 »
+  function fmtHeure(h) {
+    return String(h || "").trim()
+      .replace(/(\d{1,2})\s*[:h]\s*(\d{2})?/gi, function (_, hh, mm) { return +hh + " h" + (mm && mm !== "00" ? " " + mm : ""); })
+      .replace(/\s*[-–à]\s*/g, " – ");
+  }
+  function heures(h) {
+    var t = [], re = /(\d{1,2})\s*[:h]\s*(\d{2})?/gi, m;
+    while ((m = re.exec(String(h || "")))) t.push([+m[1], +(m[2] || 0)]);
+    return t;
+  }
 
+  // Fichier .ics pour ajouter l'événement à son agenda (téléphone, Outlook, Google Agenda)
+  function icsFor(ev) {
+    var d = parseDate(ev.date); if (!d) return null;
+    var t = heures(ev.heure), pad = function (n) { return String(n).padStart(2, "0"); };
+    var ymd = d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+    var esc = function (s) { return String(s || "").replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/[,;]/g, "\\$&"); };
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//AEILF//Site//FR", "BEGIN:VEVENT",
+      "UID:" + ymd + "-" + String(ev.titre || "").replace(/[^a-z0-9]+/gi, "").slice(0, 24) + "@aeilf",
+      "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "")];
+    if (t.length) {
+      var end = t[1] || [t[0][0] + 2, t[0][1]];
+      lines.push("DTSTART;TZID=Europe/Paris:" + ymd + "T" + pad(t[0][0]) + pad(t[0][1]) + "00");
+      lines.push("DTEND;TZID=Europe/Paris:" + ymd + "T" + pad(Math.min(end[0], 23)) + pad(end[1]) + "00");
+    } else {
+      var n = new Date(d); n.setDate(n.getDate() + 1);
+      lines.push("DTSTART;VALUE=DATE:" + ymd, "DTEND;VALUE=DATE:" + n.getFullYear() + pad(n.getMonth() + 1) + pad(n.getDate()));
+    }
+    lines.push("SUMMARY:" + esc(ev.titre));
+    if (ev.lieu) lines.push("LOCATION:" + esc(String(ev.lieu).trim()));
+    if (ev.description) lines.push("DESCRIPTION:" + esc(ev.description));
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    return lines.join("\r\n");
+  }
+
+  // Un événement = une ligne d'agenda : date à gauche, titre, horaires et lieu, résumé dépliable, actions
+  function eventCard(ev, isPast) {
+    var d = parseDate(ev.date);
+    var li = el("li", "ev" + (isPast ? " ev--past" : ""));
+
+    var date = el("div", "ev__date");
+    if (d) {
+      date.appendChild(el("span", "ev__wd", d.toLocaleDateString("fr-FR", { weekday: "long" })));
+      date.appendChild(el("span", "ev__day", String(d.getDate()).padStart(2, "0")));
+      date.appendChild(el("span", "ev__mo", d.toLocaleDateString("fr-FR", { month: "long", year: "numeric" })));
+    }
+    li.appendChild(date);
+
+    var main = el("div", "ev__main");
     var kick = el("div", "ev__kick");
     if (ev.categorie) kick.appendChild(el("span", "label label--blue", ev.categorie));
     if (ev.exemple) kick.appendChild(el("span", "tag tag--outline", "Exemple"));
-    card.appendChild(kick);
+    if (kick.children.length) main.appendChild(kick);
+    main.appendChild(el("h3", "ev__t", String(ev.titre || "").trim()));
 
-    if (d) card.appendChild(el("span", "ev__day", String(d.getDate()).padStart(2, "0")));
-    card.appendChild(el("h3", "ev__t", ev.titre));
-    if (ev.description) card.appendChild(el("p", "ev__d", ev.description));
+    var meta = el("p", "ev__meta");
+    if (ev.heure) { var h = el("span"); h.appendChild(icon("calendar")); h.appendChild(document.createTextNode(fmtHeure(ev.heure))); meta.appendChild(h); }
+    if (ev.lieu) { var l = el("span"); l.appendChild(icon("pin")); l.appendChild(document.createTextNode(String(ev.lieu).trim())); meta.appendChild(l); }
+    if (meta.children.length) main.appendChild(meta);
 
-    var meta = el("div", "ev__meta");
-    var when = [];
-    if (d) when.push(d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" }));
-    if (ev.heure) when.push(ev.heure.replace(":", " h "));
-    var info = el("span");
-    info.style.display = "grid"; info.style.gap = "4px";
-    var l1 = el("span"); l1.style.display = "flex"; l1.style.gap = "8px"; l1.style.alignItems = "center";
-    l1.appendChild(icon("calendar")); l1.appendChild(document.createTextNode(when.join(" · ")));
-    info.appendChild(l1);
-    if (ev.lieu) {
-      var l2 = el("span"); l2.style.display = "flex"; l2.style.gap = "8px"; l2.style.alignItems = "center";
-      l2.appendChild(icon("pin")); l2.appendChild(document.createTextNode(ev.lieu));
-      info.appendChild(l2);
+    var paras = String(ev.description || "").split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (paras.length) {
+      var desc = el("div", "ev__desc");
+      desc.id = "ev-" + Math.random().toString(36).slice(2, 9);
+      paras.forEach(function (p) { desc.appendChild(el("p", null, p)); });
+      main.appendChild(desc);
     }
-    meta.appendChild(info);
-    meta.appendChild(el("span", "ev__arrow", "→"));
-    card.appendChild(meta);
 
-    var li = el("li");
-    li.appendChild(card);
+    var acts = el("div", "ev__acts");
+    if (desc) {
+      var more = el("button", "ev__more"); more.type = "button";
+      more.setAttribute("aria-expanded", "false"); more.setAttribute("aria-controls", desc.id);
+      more.appendChild(el("span", null, "Lire la suite")); more.appendChild(el("span", "ev__chev", "↓"));
+      more.hidden = true;
+      acts.appendChild(more);
+    }
+    var lien = String(ev.lien || "").trim();
+    if (lien && !isPast) {
+      var go = el("a", "btn btn--primary ev__go"); go.href = lien; go.target = "_blank"; go.rel = "noopener"; go.setAttribute("data-cursor", "S'inscrire");
+      go.appendChild(el("span", null, "S'inscrire")); go.appendChild(el("span", "btn__arrow", "→"));
+      acts.appendChild(go);
+    }
+    if (!isPast && d) {
+      var cal = el("button", "ev__cal"); cal.type = "button";
+      cal.appendChild(icon("calendar")); cal.appendChild(document.createTextNode("Ajouter à mon agenda"));
+      cal.addEventListener("click", function () {
+        var ics = icsFor(ev); if (!ics) return;
+        var url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+        var a = document.createElement("a"); a.href = url; a.download = "aeilf-" + ev.date + ".ics";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+      });
+      acts.appendChild(cal);
+    }
+    if (acts.children.length) main.appendChild(acts);
+    li.appendChild(main);
     return li;
+  }
+
+  // Résumé limité à 3 lignes ; « Lire la suite » déplie le texte complet en douceur
+  function setupEventDesc(scope) {
+    $all(".ev__desc", scope).forEach(function (desc) {
+      var btn = desc.parentNode.querySelector(".ev__more");
+      if (!btn) return;
+      desc.classList.add("is-clamped");
+      var clampH = desc.clientHeight;
+      if (desc.scrollHeight <= clampH + 4) { desc.classList.remove("is-clamped"); return; }
+      btn.hidden = false;
+      btn.addEventListener("click", function () {
+        var open = btn.getAttribute("aria-expanded") !== "true";
+        btn.setAttribute("aria-expanded", String(open));
+        btn.firstChild.textContent = open ? "Réduire" : "Lire la suite";
+        var from = desc.clientHeight;
+        desc.classList.toggle("is-clamped", !open);
+        var to = open ? desc.scrollHeight : clampH;
+        if (!animate) { if (hasGsap) ScrollTrigger.refresh(); return; }
+        gsap.fromTo(desc, { height: from }, { height: to, duration: 0.7, ease: "expo.inOut", onComplete: function () { desc.style.height = ""; ScrollTrigger.refresh(); } });
+        if (open) gsap.fromTo($all("p", desc).slice(1), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, delay: 0.15, ease: "expo.out" });
+      });
+    });
   }
 
   function renderEvents(data) {
@@ -239,19 +324,22 @@
       var nd = parseDate(next.date);
       $("#teaser-day").textContent = String(nd.getDate()).padStart(2, "0");
       $("#teaser-t").textContent = next.titre;
-      $("#teaser-meta").textContent = [nd.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }), next.heure ? next.heure.replace(":", " h ") : ""].filter(Boolean).join(" · ");
+      $("#teaser-meta").textContent = [nd.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }), next.heure ? fmtHeure(next.heure) : ""].filter(Boolean).join(" · ");
       teaser.hidden = false;
     }
 
     list.textContent = "";
     if (!upcoming.length) list.appendChild(el("li", "events__empty", "Le prochain événement sera annoncé ici très bientôt."));
-    upcoming.forEach(function (e) { list.appendChild(eventCard(e)); });
+    upcoming.forEach(function (e) { list.appendChild(eventCard(e, false)); });
+    var settle = function () { setupEventDesc(list); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle); else settle();
 
     var details = $("#past");
     if (details && past.length) {
       var pl = $("#events-past");
       pl.textContent = "";
-      past.forEach(function (e) { pl.appendChild(eventCard(e)); });
+      past.forEach(function (e) { pl.appendChild(eventCard(e, true)); });
+      details.addEventListener("toggle", function once() { if (details.open) { setupEventDesc(pl); details.removeEventListener("toggle", once); } });
       $("#past-count").textContent = "(" + past.length + ")";
       details.hidden = false;
     }
@@ -1006,6 +1094,11 @@
     if (cg && cg.children.length) gsap.from(cg.children, { clipPath: "inset(0% 0% 100% 0%)", stagger: 0.1, duration: 1.1, ease: "expo.inOut", scrollTrigger: { trigger: cg, start: "top 85%", once: true } });
     $all(".events").forEach(function (list) {
       var cells = $all(".events > li", list);
+      if (cells.length && cells[0].classList.contains("ev")) {
+        gsap.from(cells, { y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: "expo.out", scrollTrigger: { trigger: list, start: "top 85%", once: true } });
+        gsap.from($all(".ev__day", list), { yPercent: 60, opacity: 0, stagger: 0.1, duration: 1.2, ease: "expo.out", delay: 0.2, scrollTrigger: { trigger: list, start: "top 85%", once: true } });
+        return;
+      }
       gsap.from(cells, { clipPath: "inset(0% 0% 100% 0%)", stagger: 0.1, duration: 1.1, ease: "expo.inOut", scrollTrigger: { trigger: list, start: "top 85%", once: true } });
       gsap.from($all(".ev__day", list), { yPercent: 60, opacity: 0, stagger: 0.1, duration: 1.2, ease: "expo.out", delay: 0.4, scrollTrigger: { trigger: list, start: "top 85%", once: true } });
     });
