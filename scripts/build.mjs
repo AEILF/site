@@ -3,7 +3,7 @@
 // - crée une page par article du carnet, à l'adresse recherche/<nom-de-l-article>/,
 //   avec son propre titre et son résumé (utiles aux moteurs de recherche et aux aperçus de lien).
 // Lancé automatiquement par GitHub à chaque modification (.github/workflows/publication.yml).
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync, readdirSync, statSync } from "node:fs";
 
 const OUT = "_site";
 const PUBLIC = ["index.html", "404.html", "recherche.html", "mentions-legales.html", "recherche", "mentions-legales", "assets", "content", "images", "site"];
@@ -54,3 +54,15 @@ for (const a of data.articles || []) {
   count++;
 }
 console.log(`Site prêt dans ${OUT}/ : ${count} page(s) d'article générée(s).`);
+
+// Numéro de version ajouté aux feuilles de style et scripts du site (?v=…) : à chaque publication,
+// les navigateurs téléchargent la nouvelle version au lieu de garder l'ancienne en mémoire.
+const version = (process.env.GITHUB_SHA || String(Date.now())).slice(0, 10);
+const walk = (dir) => readdirSync(dir).flatMap((f) => { const p = `${dir}/${f}`; return statSync(p).isDirectory() ? walk(p) : [p]; });
+let stamped = 0;
+for (const file of walk(OUT).filter((f) => f.endsWith(".html"))) {
+  const html = readFileSync(file, "utf8");
+  const out = html.replace(/((?:href|src)="[^"]*assets\/(?:style\.css|fonts\.css|main\.js|recherche\.js))"/g, `$1?v=${version}"`);
+  if (out !== html) { writeFileSync(file, out); stamped++; }
+}
+console.log(`Version ${version} appliquée à ${stamped} page(s).`);
