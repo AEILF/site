@@ -1,3 +1,13 @@
 {
-  "evenements": []
+  "evenements": [
+    {
+      "titre": "Anatomie d'une dérive illibérale - nos institutions ont-elles les moyens de résister ?",
+      "date": "2026-11-18",
+      "heure": "19:00 - 21:00",
+      "lieu": "Amphithéâtre Mistral - FDSP Aix-en-Provence ",
+      "categorie": "Conférence",
+      "description": "Une démocratie peut-elle basculer dans l'illibéralisme sans coup d’État, par les voies mêmes de la légalité ? C’est la question que nous explorerons lors de la deuxième conférence du cycle « Après mai 2027 – Fictions prospectives pour penser l’avenir démocratique ».\n\nEt si, au lendemain de 2027, un pouvoir démocratiquement élu entreprenait de transformer progressivement les institutions, au nom du rétablissement de l’ordre ? Jusqu’où le droit peut-il devenir l’instrument de sa propre remise en cause ? Nos institutions disposent-elles des moyens de résister ?\n\nÀ partir d’une fiction prospective, nous vous proposons d’explorer collectivement les mécanismes de l’érosion démocratique, les fragilités de l’État de droit et le rôle des contre-pouvoirs.",
+      "exemple": false
+    }
+  ]
 }
